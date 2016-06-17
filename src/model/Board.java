@@ -26,7 +26,6 @@ public class Board {
 
         this._width = width;
         this._height = height;
-
         this._board = new Tile[this._height][this._width];
         init();
 
