@@ -62,7 +62,7 @@ public class ChangeNeighborhoodColorEffectTest {
         // Effet fixé sur une case (qui n'est pas encore remplie)
         int height = aGame.getBoard().getHeight();
         // height-3 correspond à la première case vide dans la colonne O, vu que l'on a déjà joué deux coups dans cette colonne
-        aGame.getBoard().getTileIJ(height - 3, 0).setEffect(new DisappearEffect());
+        aGame.getBoard().getTileIJ(height - 3, 0).setEffect(new ChangeNeighborhoodColorEffect());
 
         // Récupération de l'ID du joueur avant que le coup soit joué 
         int id_player = aGame.getCurrentPlayer().getId();
@@ -80,7 +80,9 @@ public class ChangeNeighborhoodColorEffectTest {
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
         // - les couleurs du voisinage ont bien changé
+        // - il y a bien un pion de plus sur le plateau
         assertTrue("Doit être d'effet changeNeighborhoodColor", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof ChangeNeighborhoodColorEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
+        assertEquals(nb_tokens_before + 1, nb_tokens_after);
     }
 }
