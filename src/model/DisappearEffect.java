@@ -11,7 +11,7 @@ package model;
 public class DisappearEffect extends Effect {
 
     /**
-     * TODO
+     * Fait disparaitre le pion sur la ligne: line et sur la colonne: column
      */
     @Override
     public void playEffect(int line, int column, Game game) {
