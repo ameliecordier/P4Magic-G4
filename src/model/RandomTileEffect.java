@@ -21,6 +21,7 @@ public class RandomTileEffect extends Effect{
         Random rand = new Random();
         int random = rand.nextInt(max - min + 1) + min;
         
+        
         //on joue a une position aleatoire du board
         game.playMove(random);
         System.out.println("tout");
