@@ -11,6 +11,8 @@ package model;
 public class DisappearEffect extends Effect {
 
     /**
+     * Efface le pion joué à la case qui possède cet effet
+     * 
      * @param line
      * @param column
      * @param game

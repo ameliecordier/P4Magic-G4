@@ -47,7 +47,8 @@ public class ColumnDisappearEffectTest {
 
     /**
      * Test du bon fonctionnement du jeu en dehors de l'effet.
-     * .
+     * Résultats attendus après le coup : - un pion de plus sur le plateau - le tour de
+     * jeu est passé - l'effet a bien été appliqué: 
      */
     @Test
     public void testColumnDisappearEffectNormalGame(){
