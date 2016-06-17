@@ -13,6 +13,9 @@ import static org.junit.Assert.*;
 public class DisappearColumnTest {
     static Game jeu;
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
         // initialisation d'un jeu
@@ -21,6 +24,9 @@ public class DisappearColumnTest {
         jeu.setBoard(tbl);
     }
     
+    /**
+     *
+     */
     @Test
     public void testDisappearColumn() {
         Utils.simulateaGame(jeu);
@@ -45,7 +51,10 @@ public class DisappearColumnTest {
         assertTrue(jeu.getCurrentPlayer().getId() != joeur);
     }
         
-     @Test
+    /**
+     *
+     */
+    @Test
          public void secondTest() {
 
         int height = jeu.getBoard().getHeight();

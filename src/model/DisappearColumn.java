@@ -7,6 +7,9 @@ package model;
 public class DisappearColumn extends Effect{
     /**
      * Une colonne disparait lorsqu'elle est rempli
+     * @param line
+     * @param column
+     * @param game
      */
     
     public void playEffect(int line, int column, Game game){
