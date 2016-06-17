@@ -20,8 +20,8 @@ public class EffectFactory {
      * @return an effect
      */
     public static Effect createEffect() {
-        int min = 2;
-        int max = 2;
+        int min = 0;
+        int max = 3;
         Random rand = new Random();
         //Tire un nombre aléatoire entre min et max compris
         int random = rand.nextInt(max - min + 1) + min;
@@ -34,6 +34,8 @@ public class EffectFactory {
                 return new DisappearEffect();
             case 2:
                 return new DeleteColumnEffect();
+            case 3:
+                return new DeleteLineEffect();
         }
 
         return null;
