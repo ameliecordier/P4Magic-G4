@@ -35,7 +35,15 @@ public final class GameView extends JFrame implements Observer {
 
     //Game Frame (Main Frame)
     private JPanel _gameWindow;
+
+    /**
+     *
+     */
     public static JPanel _gamePreview;
+
+    /**
+     *
+     */
     public static JPanel _gameRowsGrid;
     private int _gameWindowHeight = 800;
     private int _gameWindowWidth = 600;
@@ -364,54 +372,106 @@ public final class GameView extends JFrame implements Observer {
 
     }
 
+    /**
+     *
+     * @param width
+     */
     public void setWidth(int width) {
         _width = width;
     }
 
+    /**
+     *
+     * @param height
+     */
     public void setHeight(int height) {
         _height = height;
     }
 
+    /**
+     *
+     * @return
+     */
     public JFrame getEndGameFrame() {
         return this._endGameFrame;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getEndGameQuit() {
         return this._endGameQuit;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getEndGamePlay() {
         return this._endGamePlay;
     }
 
+    /**
+     *
+     * @return
+     */
     public JFrame getSettingsFrame() {
         return this._settingsFrame;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getSettingsQuitButton() {
         return this._settingsQuit;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getSettingsPlayButton() {
         return this._settingsPlay;
     }
 
+    /**
+     *
+     * @return
+     */
     public JSlider getSettingsTileSlider() {
         return this._settingsSliderEffectChance;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getGameWindow() {
         return _gameWindow;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getGamePreview() {
         return _gamePreview;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getGameRowsGrid() {
         return _gameRowsGrid;
     }
 
+    /**
+     *
+     * @return
+     */
     public JFrame getMainFrame() {
         return this;
     }

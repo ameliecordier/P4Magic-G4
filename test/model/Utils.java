@@ -71,4 +71,8 @@ public class Utils {
         */
         
     }
+
+    static void simulateaGame(Game jeu) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

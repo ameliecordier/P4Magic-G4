@@ -11,6 +11,13 @@ package model;
 public abstract class Effect {
 
     //line and column are in the coordinates of the token that has just been played
-    public abstract void playEffect(int line, int column, Game game);
+
+    /**
+     *
+     * @param line
+     * @param column
+     * @param game
+     */
+        public abstract void playEffect(int line, int column, Game game);
 
 }
