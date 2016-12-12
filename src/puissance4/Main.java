@@ -5,6 +5,7 @@
 package puissance4;
 
 import controller.GameController;
+import static java.lang.System.out;
 import model.Game;
 import view.GameView;
 
@@ -21,6 +22,6 @@ public class Main {
         GameView board = new GameView();
         GameController controller = new GameController(board, game);
         game.addObserver(board);
-
+        out.println("Test clonage");
     }
 }
