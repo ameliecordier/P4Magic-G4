@@ -28,10 +28,12 @@ public class EffectFactory {
 
         switch (random) {
 
-            case 0:
+            /*case 0:
                 return new ChangeColorEffect();
             case 1:
-                return new DisappearEffect();
+                return new DisappearEffect();*/
+            case 0:
+                return new DeleteColumnEffect();
         }
 
         return null;
