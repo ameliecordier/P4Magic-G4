@@ -22,6 +22,5 @@ public class Main {
         GameView board = new GameView();
         GameController controller = new GameController(board, game);
         game.addObserver(board);
-        out.println("Test clofqdzqdzdfsfqsfsnage");
     }
 }
