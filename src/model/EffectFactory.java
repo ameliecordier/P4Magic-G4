@@ -30,8 +30,8 @@ public class EffectFactory {
 
             case 0:
                 return new ChangeColorEffect();
-            //case 1:
-            //    return new DisappearEffect();
+            case 1:
+               return new DisappearEffect();
         }
 
         return null;
