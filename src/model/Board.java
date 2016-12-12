@@ -101,7 +101,7 @@ public class Board {
      */
     public Tile getTileIJ(int i, int j) {
         return this._board[i][j];
-        }
+    }
 
     /**
      * Get the percentage of chance of having an effect on a tile
