@@ -244,8 +244,11 @@ public class Board {
      *
      * @return numberoftiles
      */
+    
+      
+        
     public int getTotalTilesCount() {
-        return getTilesCountPlayer1() + getTilesCountPlayer2();
+        return getTilesCountPlayer1() + getTilesCountPlayer2() ;
     }
 
 }
