@@ -59,6 +59,7 @@ public final class Game extends Observable {
     public void playMove(int column) {
 
         int i;
+        
 
         if (this._board.getTileIJ(0, column).getStatus() == -1) {
 
@@ -78,7 +79,9 @@ public final class Game extends Observable {
             }
 
             if (this._board.getTileIJ(i, column).getEffect() != null) {
+              
                 this._board.getTileIJ(i, column).getEffect().playEffect(i, column, this);
+                
             }
 
             Player tmp = Win();
