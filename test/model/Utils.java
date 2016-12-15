@@ -19,8 +19,12 @@ public class Utils {
         for(int i=0; i<10; i++){
             aGame.playMove(i);
         }
-        for(int i=0; i<7; i=i+2){
-            aGame.playMove(i);
+//        // ATTENTION ! Cette boucle ne crée pas la grille décrite ci-dessous !
+//        for(int i=0; i<7; i=i+2){
+//            aGame.playMove(i);
+//        }
+        for(int i=0; i<5; i++){
+            aGame.playMove(2*i);
         }
         
         //System.out.println(aGame.getBoard().toStringSymbols());
