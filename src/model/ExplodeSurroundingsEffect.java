@@ -11,8 +11,7 @@ public class ExplodeSurroundingsEffect extends Effect {
      */
 	@Override
     public void playEffect(int line, int column, Game game) {
-		int tile_id = game.getBoard().getTileIJ(line, column).getStatus();
-		tile_id=-1;
+		int tile_id=-1;
     	game.getBoard().getTileIJ(line, column).setStatus(tile_id);
     	if(line!=game.getBoard().getHeight()-1){
     		game.getBoard().getTileIJ(line+1, column).setStatus(tile_id);
@@ -21,20 +20,30 @@ public class ExplodeSurroundingsEffect extends Effect {
     		game.getBoard().getTileIJ(line-1, column).setStatus(tile_id);
     	}
     	if(column!=game.getBoard().getWidth()-1){
-    		game.getBoard().getTileIJ(line+1, column+1).setStatus(tile_id);
+    		game.getBoard().getTileIJ(line, column+1).setStatus(tile_id);
+    		gravity(column+1,line,game);
     	}
     	if(column!=0){
     		game.getBoard().getTileIJ(line, column-1).setStatus(tile_id);
+    		gravity(column-1,line,game);
     	}
     	
-    	int tempi=-1;
-    	int tempj=-1;
-    	for(int i=column-1;i<column+1;i++){
-    		for(int j=line-1;i<line+1;j--){
-    			if(game.getBoard().getTileIJ(j, i).getStatus()!=-1){
-    				
-    			}
-    		}
-    	}
+    	
+    	
+	}
+	
+	public void gravity(int column,int lign,Game game){
+		for(int i=lign;i>0;i--){
+			if(game.getBoard().getTileIJ(i,column).getStatus()==1){
+				game.getBoard().getTileIJ(lign, column).setStatus(1);
+				game.getBoard().getTileIJ(i,column).setStatus(-1);
+				lign--;
+			}
+			else if(game.getBoard().getTileIJ(i,column).getStatus()==2){
+				game.getBoard().getTileIJ(lign, column).setStatus(2);
+				game.getBoard().getTileIJ(i,column).setStatus(-1);
+				lign--;
+			}
+		}
 	}
 }
