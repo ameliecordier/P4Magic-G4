@@ -53,18 +53,22 @@ public class DisappearColumnEffectTest {
         // Récupération de l'ID du joueur avant que le coup soit joué 
         int id_player = aGame.getCurrentPlayer().getId();
 
+        // Récupération du nombre de pions présents 
+        int nb_tokens_before = aGame.getBoard().getTotalTilesCount();
+
         // Coup joué sur une case ne contenant pas l'effet 
-        aGame.playMove(0);
+        aGame.playMove(1);
+
+        // Récupération du nombre de pions après le coup 
+        int nb_tokens_after = aGame.getBoard().getTotalTilesCount();
 
         // Vérifications :
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
-        // - la colonne dans laquelle le pion est joué est vide
+        // - il y a bien un pion de plus sur le plateau
         assertTrue("Doit être d'effet disappear column", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof DisappearColumnEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
-        for(int i=2; i>=0;i--) {
-            assertEquals(-1, aGame.getBoard().getTileIJ(height-1-i, 0).getStatus());
-        }
+        assertEquals(nb_tokens_before + 1, nb_tokens_after);
         
     }
 
