@@ -17,6 +17,14 @@ public class DisappearEffect extends Effect {
     public void playEffect(int line, int column, Game game) {
        int tile_id = -1;
        game.getBoard().getTileIJ(line, column).setStatus(tile_id);
+       int player1_id = game.getPlayer1().getId();
+       
+       if (tile_id == player1_id) {
+           tile_id = -1;
+       } else {
+           tile_id = player1_id;
+       }
+       game.getBoard().getTileIJ(line, column).setStatus(tile_id);
     }
 
 }
