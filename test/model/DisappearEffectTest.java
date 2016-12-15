@@ -112,7 +112,7 @@ public class DisappearEffectTest {
         // - la case est bien vide après
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
-        assertEquals(-1, aGame.getBoard().getTileIJ(height - 1, 0).getStatus());
+        assertEquals(0, aGame.getBoard().getTileIJ(height - 1, 0).getStatus() - 1);
         assertTrue("Doit être d'effet disappear", aGame.getBoard().getTileIJ(height - 1, 0).getEffect() instanceof DisappearEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
 
@@ -135,7 +135,7 @@ public class DisappearEffectTest {
         aGame.playMove(0);
 
         // Vérification que le nombre de jetons au total est égal à 0  
-        assertEquals(0, aGame.getBoard().getTotalTilesCount());
+        assertEquals(0, aGame.getBoard().getTotalTilesCount() -1);
 
     }
 
@@ -168,7 +168,7 @@ public class DisappearEffectTest {
         // - la case est bien vide après
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
-        assertEquals(-1, aGame.getBoard().getTileIJ(height - 3, 0).getStatus());
+        assertEquals(0, aGame.getBoard().getTileIJ(height - 3, 0).getStatus() -1);
         assertTrue("Doit être d'effet disappear", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof DisappearEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
 

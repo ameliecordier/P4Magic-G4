@@ -94,7 +94,7 @@ public class DeleteColumnEffectTest {
         aGame.playMove(0);
 
 
-        assertEquals(1, aGame.getBoard().getTileIJ(height - 1, 0).getStatus());
+        assertEquals(0, aGame.getBoard().getTileIJ(height - 1, 0).getStatus()-1);
         assertTrue("Doit être d'effet deleteColumn", aGame.getBoard().getTileIJ(height - 1, 0).getEffect() instanceof DeleteColumnEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
 
@@ -112,7 +112,7 @@ public class DeleteColumnEffectTest {
         aGame.playMove(0);
 
 
-        assertEquals(1, aGame.getBoard().getTotalTilesCount());
+        assertEquals(0, aGame.getBoard().getTotalTilesCount() -1);
 
     }
 
@@ -134,7 +134,7 @@ public class DeleteColumnEffectTest {
 
         aGame.playMove(0);
 
-        assertEquals(1, aGame.getBoard().getTileIJ(height - 3, 0).getStatus());
+        assertEquals(0, aGame.getBoard().getTileIJ(height - 3, 0).getStatus() -1);
         assertTrue("Doit être d'effet disappear", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof DeleteColumnEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
 
