@@ -17,10 +17,10 @@ import static model.EffectFactory.createEffect;
 public final class Game extends Observable {
 
     private int _posPreview;
-    private Board _board;
+    Board _board;
     private final Player _player1;
     private final Player _player2;
-    private Player _currentPlayer;
+    Player _currentPlayer;
     private int _winner;
     private boolean _over;
 
