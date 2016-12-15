@@ -215,6 +215,5 @@ public class ChangeColorEffectTest {
         assertTrue(id_next_player != id_player);
 
     }
-
     
 }
