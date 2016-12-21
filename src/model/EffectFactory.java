@@ -20,7 +20,7 @@ public class EffectFactory {
      * @return an effect
      */
     public static Effect createEffect() {
-        int min = 2;
+        int min = 0;
         int max = 2;
         Random rand = new Random();
         //Tire un nombre aléatoire entre min et max compris

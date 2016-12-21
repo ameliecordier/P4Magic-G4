@@ -6,11 +6,16 @@ package model;
  */
 public class ColorColumnEffect extends Effect {
 
+    /**
+     * This effect adds a tile of the current player's color in each column.
+     * 
+     * @param line
+     * @param column
+     * @param game 
+     */
     @Override
     public void playEffect(int line, int column, Game game) {
         int tile_id = game.getBoard().getTileIJ(line, column).getStatus();
-        int player1_id = game.getPlayer1().getId();
-        int player2_id = game.getPlayer2().getId();
         
         game.getBoard().getTileIJ(line,column).setStatus(-1);
         
@@ -26,10 +31,5 @@ public class ColorColumnEffect extends Effect {
                               
         }
         
-//        game.getBoard().getTileIJ(line, column).setStatus(tile_id);
     }
-
-    /**
-     * Adds a tile of the color which has just been played in each column.
-     */
 }
