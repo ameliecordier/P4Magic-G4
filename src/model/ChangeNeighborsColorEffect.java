@@ -2,13 +2,13 @@ package model;
 
 /**
  *
- * @author Simon
+ * @author Kostia & Simon
  */
 public class ChangeNeighborsColorEffect extends Effect {
 
     /**
-     * This effect toggles the color of the 7 neighbors of the tile that has just been played and
-     * thus the owner of the tiles
+     * This effect toggles the color of the 7 neighbors of the tile that has
+     * just been played and thus the owner of the tiles
      *
      * @param line
      * @param column
@@ -16,29 +16,48 @@ public class ChangeNeighborsColorEffect extends Effect {
      */
     @Override
     public void playEffect(int line, int column, Game game) {
-        
+
         int l = line;
         int c = column;
-        int[][] positionsToCheck = new int[][] {
-            {l-1,c-1}, {l-1, c+1},
-            {l, c-1}, {l, c+1},
-            {l+1, c-1}, {l+1, c}, {l+1, c+1} 
+        // positionsToCheck contains the coordinates of the 7 neighbors tiles that can be affected
+        // by the ChangeNeighborsColorEffect
+        int[][] positionsToCheck = new int[][]{
+            {l - 1, c - 1}, {l - 1, c + 1},
+            {l, c - 1}, {l, c + 1},
+            {l + 1, c - 1}, {l + 1, c}, {l + 1, c + 1}
         };
-        int height = game.getBoard().getHeight();
-        int width = game.getBoard().getWidth();
-         
+
+        // for each tile to check, if the tile is inside the board, we toogle its color
         for (int i = 0; i < positionsToCheck.length; i++) {
-            if (positionsToCheck[i][0] >= 0 && positionsToCheck[i][0] <= height - 1 &&
-                positionsToCheck[i][1] >= 0 && positionsToCheck[i][1] <= width - 1 &&
-                game.getBoard().getTileIJ(positionsToCheck[i][0], positionsToCheck[i][1]).getStatus() != -1) {
+            if (checkTileOnBoard(positionsToCheck[i][0], positionsToCheck[i][1], game)
+                    && game.getBoard().getTileIJ(positionsToCheck[i][0], positionsToCheck[i][1]).getStatus() != -1) {
                 toggleTileColor(positionsToCheck[i][0], positionsToCheck[i][1], game);
             }
-            
+
         }
     }
-    
+
+    /**
+     * This method return true if the tested tile is inside the board and false
+     * if it's outside
+     *
+     * @param line
+     * @param column
+     * @param game
+     * @return true if the tile is inside the board, false if not
+     */
+    public boolean checkTileOnBoard(int line, int column, Game game) {
+        int height = game.getBoard().getHeight();
+        int width = game.getBoard().getWidth();
+        if (line >= 0 && line <= height - 1 && column >= 0 && column <= width - 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void toggleTileColor(int line, int column, Game game) {
-        
+
         int tile_id = game.getBoard().getTileIJ(line, column).getStatus();
         int player1_id = game.getPlayer1().getId();
         int player2_id = game.getPlayer2().getId();
