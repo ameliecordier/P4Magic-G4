@@ -20,6 +20,7 @@ public final class Game extends Observable {
     private Board _board;
     private final Player _player1;
     private final Player _player2;
+    private final Player _neutral;
     private Player _currentPlayer;
     private int _winner;
     private boolean _over;
@@ -34,6 +35,7 @@ public final class Game extends Observable {
 
         this._player1 = new HumanPlayer(1, Color.RED);
         this._player2 = new HumanPlayer(2, Color.YELLOW);
+        this._neutral = new HumanPlayer(403, Color.BLACK);
         this._currentPlayer = this._player1;
 
         init();
@@ -314,6 +316,8 @@ public final class Game extends Observable {
             return this._player1;
         } else if (id == this._player2.getId()) {
             return this._player2;
+        } else if (id == this._neutral.getId()){
+            return this._neutral;
         } else {
             return null;
         }
@@ -354,6 +358,15 @@ public final class Game extends Observable {
      */
     public Player getPlayer2() {
         return this._player2;
+    }
+    
+        /**
+     * Get player neutral
+     *
+     * @return player neutral
+     */
+    public Player getPlayerNeutral() {
+        return this._neutral;
     }
 
 }
