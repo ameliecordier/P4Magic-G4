@@ -175,7 +175,7 @@ public final class GameView extends JFrame implements Observer {
      * Update method
      *
      * @param o
-     * @param arg
+     * @param arg 
      */
     @Override
     public void update(Observable o, Object arg) {
@@ -329,7 +329,7 @@ public final class GameView extends JFrame implements Observer {
     /**
      * Set window height
      *
-     * @param height
+     * @param height la hauteur
      */
     public void setGameWindowHeight(int height) {
         this._gameWindowHeight = height;
@@ -338,7 +338,7 @@ public final class GameView extends JFrame implements Observer {
     /**
      * Set window width
      *
-     * @param width
+     * @param width la largeur
      */
     public void setGameWindowWidth(int width) {
         this._gameWindowWidth = width;

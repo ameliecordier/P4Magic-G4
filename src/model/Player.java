@@ -50,7 +50,7 @@ public abstract class Player {
     /**
      * Set the color of the player
      *
-     * @param color
+     * @param color la couleur des pions
      */
     public void setColor(Color color) {
         this._color = color;
@@ -59,7 +59,7 @@ public abstract class Player {
     /**
      * Set the id of the player
      *
-     * @param id
+     * @param id l'id du joueur
      */
     public void setId(int id) {
         this._id = id;

@@ -44,7 +44,7 @@ public class Tile {
      * Set the effect of the tile. Any effect managed by the EffectFactory can
      * be applied to a tile
      *
-     * @param effect
+     * @param effect l'effet utilisé
      */
     public void setEffect(Effect effect) {
         this._effect = effect;

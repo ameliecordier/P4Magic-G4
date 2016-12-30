@@ -14,9 +14,9 @@ public class ChangeColorEffect extends Effect {
      * This effect changes the color of the tile that has just been played and
      * thus the owner of the tile)
      *
-     * @param line
-     * @param column
-     * @param game
+     * @param line  la ligne
+     * @param column la colonne 
+     * @param game la partie
      */
     @Override
     public void playEffect(int line, int column, Game game) {
@@ -27,7 +27,9 @@ public class ChangeColorEffect extends Effect {
 
         if (tile_id == player1_id) {
             tile_id = player2_id;
-        } else {
+        
+        }
+        else {
             tile_id = player1_id;
         }
         game.getBoard().getTileIJ(line, column).setStatus(tile_id);

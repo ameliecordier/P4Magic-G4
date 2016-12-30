@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="GameController">
+  <ClassDiagramComponents>
+    <Class name="GameController" package="controller" visibility="public" isFinal="true" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="_view" type="GameView" visibility="private" isFinal="true"/>
+        <Field name="_game" type="Game" visibility="private" isFinal="true"/>
+        <Field name="_settingsClosingWindow" type="WindowAdapter" visibility="private"/>
+        <Field name="_settingsQuit" type="ActionListener" visibility="private"/>
+        <Field name="_settingsPlay" type="ActionListener" visibility="private"/>
+        <Field name="_gameSelectColumnGrid" type="MouseAdapter[][]" visibility="private"/>
+        <Field name="_gameClickColumnGrid" type="MouseAdapter[][]" visibility="private"/>
+        <Field name="_gameSelectColumnPreview" type="MouseAdapter[]" visibility="private"/>
+        <Field name="_gameClickColumnPreview" type="MouseAdapter[]" visibility="private"/>
+        <Field name="_gameClosingWindow" type="WindowAdapter" visibility="private"/>
+        <Field name="_gameResizingWindow" type="ComponentAdapter" visibility="private"/>
+        <Field name="_endGamePlay" type="ActionListener" visibility="private"/>
+        <Field name="_endGameQuit" type="ActionListener" visibility="private"/>
+        <Field name="_endGameClosingWindow" type="WindowAdapter" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameView" name="view"/>
+          <Argument type="Game" name="game"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initSettingsController" returnType="void" visibility="public"/>
+        <Method name="initGameController" returnType="void" visibility="public"/>
+        <Method name="initEndGameController" returnType="void" visibility="public"/>
+        <Method name="quit" returnType="void" visibility="private"/>
+        <Method name="playAgain" returnType="void" visibility="private"/>
+        <Method name="startGame" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="view">
+  <ClassDiagramComponents>
+    <Class name="GameView" package="view" visibility="public" isFinal="true" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="_settingsFrame" type="JFrame" visibility="private"/>
+        <Field name="_settingsComponentGrid" type="JPanel" visibility="private"/>
+        <Field name="_settingsQuit" type="JButton" visibility="private"/>
+        <Field name="_settingsPlay" type="JButton" visibility="private"/>
+        <Field name="_settingsSeparator" type="JSeparator" visibility="private"/>
+        <Field name="_settingsSliderEffectChance" type="JSlider" visibility="private"/>
+        <Field name="_settingsSliderLabel" type="JLabel" visibility="private"/>
+        <Field name="_settingsSliderPanel" type="JPanel" visibility="private"/>
+        <Field name="_gameWindow" type="JPanel" visibility="private"/>
+        <Field name="_gamePreview" type="JPanel" visibility="public" isStatic="true"/>
+        <Field name="_gameRowsGrid" type="JPanel" visibility="public" isStatic="true"/>
+        <Field name="_gameWindowHeight" type="int" visibility="private"/>
+        <Field name="_gameWindowWidth" type="int" visibility="private"/>
+        <Field name="_gameBorderSize" type="int" visibility="private"/>
+        <Field name="_gameBlueLine" type="Border" visibility="private" isStatic="true"/>
+        <Field name="_endGameFrame" type="JFrame" visibility="private"/>
+        <Field name="_endGameLabel1" type="JLabel" visibility="private"/>
+        <Field name="_endGameLabel2" type="JLabel" visibility="private"/>
+        <Field name="_endGameQuit" type="JButton" visibility="private"/>
+        <Field name="_endGamePlay" type="JButton" visibility="private"/>
+        <Field name="_endGamePanel" type="JPanel" visibility="private"/>
+        <Field name="_endGameButtons" type="JPanel" visibility="private"/>
+        <Field name="_width" type="int" visibility="private" isStatic="true"/>
+        <Field name="_height" type="int" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initSettingsFrame" returnType="void" visibility="private"/>
+        <Method name="initGameFrame" returnType="void" visibility="public"/>
+        <Method name="initEndGameFrame" returnType="void" visibility="private"/>
+        <Method name="update" returnType="void" visibility="public">
+          <Argument type="Observable" name="o"/>
+          <Argument type="Object" name="arg"/>
+        </Method>
+        <Method name="resetPreview" returnType="void" visibility="public"/>
+        <Method name="fillGrids" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="resetView" returnType="void" visibility="public"/>
+        <Method name="setBorderSize" returnType="void" visibility="public"/>
+        <Method name="setGameWindowHeight" returnType="void" visibility="public">
+          <Argument type="int" name="height"/>
+        </Method>
+        <Method name="setGameWindowWidth" returnType="void" visibility="public">
+          <Argument type="int" name="width"/>
+        </Method>
+        <Method name="setLabelBorder" returnType="void" visibility="public"/>
+        <Method name="setWidth" returnType="void" visibility="public">
+          <Argument type="int" name="width"/>
+        </Method>
+        <Method name="setHeight" returnType="void" visibility="public">
+          <Argument type="int" name="height"/>
+        </Method>
+        <Method name="getEndGameFrame" returnType="JFrame" visibility="public"/>
+        <Method name="getEndGameQuit" returnType="JButton" visibility="public"/>
+        <Method name="getEndGamePlay" returnType="JButton" visibility="public"/>
+        <Method name="getSettingsFrame" returnType="JFrame" visibility="public"/>
+        <Method name="getSettingsQuitButton" returnType="JButton" visibility="public"/>
+        <Method name="getSettingsPlayButton" returnType="JButton" visibility="public"/>
+        <Method name="getSettingsTileSlider" returnType="JSlider" visibility="public"/>
+        <Method name="getGameWindow" returnType="JPanel" visibility="public"/>
+        <Method name="getGamePreview" returnType="JPanel" visibility="public"/>
+        <Method name="getGameRowsGrid" returnType="JPanel" visibility="public"/>
+        <Method name="getMainFrame" returnType="JFrame" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>

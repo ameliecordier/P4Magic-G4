@@ -54,7 +54,7 @@ public final class Game extends Observable {
      * played in this column. The token falls in the column until it cannot fall
      * anymore
      *
-     * @param column
+     * @param column la colonne
      */
     public void playMove(int column) {
 
@@ -102,7 +102,7 @@ public final class Game extends Observable {
     /**
      * Make sure the player can play in the column
      *
-     * @param column
+     * @param column la colonne
      * @return a boolean indicating if the player can play or not
      */
     public boolean strokeIsValid(int column) {
@@ -269,7 +269,7 @@ public final class Game extends Observable {
     /**
      * Set the board for the game
      *
-     * @param board
+     * @param board le board
      */
     public void setBoard(Board board) {
         this._board = board;
@@ -305,7 +305,7 @@ public final class Game extends Observable {
     /**
      * Get a player from its id
      *
-     * @param id
+     * @param id l'id du joueur
      * @return a player
      */
     public Player getPlayerById(int id) {
