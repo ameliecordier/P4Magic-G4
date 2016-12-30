@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="model">
+  <ClassDiagramComponents>
+    <Class name="Board" package="model" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="_board" type="Tile[][]" visibility="private"/>
+        <Field name="_tileEffectChance" type="int" visibility="private"/>
+        <Field name="_width" type="int" visibility="private"/>
+        <Field name="_height" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="init" returnType="void" visibility="private"/>
+        <Method name="resetBoard" returnType="void" visibility="public"/>
+        <Method name="setEffectChances" returnType="void" visibility="public">
+          <Argument type="int" name="tileEffectChance"/>
+        </Method>
+        <Method name="setWidth" returnType="void" visibility="public">
+          <Argument type="int" name="width"/>
+        </Method>
+        <Method name="setHeight" returnType="void" visibility="public">
+          <Argument type="int" name="height"/>
+        </Method>
+        <Method name="getTileIJ" returnType="Tile" visibility="public">
+          <Argument type="int" name="i"/>
+          <Argument type="int" name="j"/>
+        </Method>
+        <Method name="getTileEffectChance" returnType="int" visibility="public"/>
+        <Method name="getWidth" returnType="int" visibility="public"/>
+        <Method name="getHeight" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="toStringSymbols" returnType="String" visibility="public"/>
+        <Method name="getTilesCountPlayer1" returnType="int" visibility="public"/>
+        <Method name="getTilesCountPlayer2" returnType="int" visibility="public"/>
+        <Method name="getTotalTilesCount" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ChangeColorEffect" package="model" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="playEffect" returnType="void" visibility="public">
+          <Argument type="int" name="line"/>
+          <Argument type="int" name="column"/>
+          <Argument type="Game" name="game"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DeleteColumnEffect" package="model" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="playEffect" returnType="void" visibility="public">
+          <Argument type="int" name="line"/>
+          <Argument type="int" name="column"/>
+          <Argument type="Game" name="game"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DeleteLineEffect" package="model" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="playEffect" returnType="void" visibility="public">
+          <Argument type="int" name="line"/>
+          <Argument type="int" name="column"/>
+          <Argument type="Game" name="game"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DisappearEffect" package="model" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="playEffect" returnType="void" visibility="public">
+          <Argument type="int" name="line"/>
+          <Argument type="int" name="column"/>
+          <Argument type="Game" name="game"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Effect" package="model" visibility="public" isAbstract="true" xPosition="1236.0" yPosition="271.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="playEffect" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="int" name="line"/>
+          <Argument type="int" name="column"/>
+          <Argument type="Game" name="game"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EffectFactory" package="model" visibility="public" xPosition="1325.0" yPosition="489.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createEffect" returnType="Effect" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Game" package="model" visibility="public" isFinal="true" xPosition="889.0" yPosition="252.0">
+      <Fields>
+        <Field name="_posPreview" type="int" visibility="private"/>
+        <Field name="_board" type="Board" visibility="private"/>
+        <Field name="_player1" type="Player" visibility="private" isFinal="true"/>
+        <Field name="_player2" type="Player" visibility="private" isFinal="true"/>
+        <Field name="_currentPlayer" type="Player" visibility="private"/>
+        <Field name="_winner" type="int" visibility="private"/>
+        <Field name="_over" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="init" returnType="void" visibility="public"/>
+        <Method name="playMove" returnType="void" visibility="public">
+          <Argument type="int" name="column"/>
+        </Method>
+        <Method name="strokeIsValid" returnType="boolean" visibility="public">
+          <Argument type="int" name="column"/>
+        </Method>
+        <Method name="Win" returnType="Player" visibility="public"/>
+        <Method name="isOver" returnType="void" visibility="public"/>
+        <Method name="resetGame" returnType="void" visibility="public"/>
+        <Method name="resetPosPreview" returnType="void" visibility="public"/>
+        <Method name="setTilesEffect" returnType="void" visibility="public"/>
+        <Method name="setPosPreview" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="setBoard" returnType="void" visibility="public">
+          <Argument type="Board" name="board"/>
+        </Method>
+        <Method name="getPosPreview" returnType="int" visibility="public"/>
+        <Method name="getBoard" returnType="Board" visibility="public"/>
+        <Method name="getCurrentPlayer" returnType="Player" visibility="public"/>
+        <Method name="getPlayerById" returnType="Player" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getWinner" returnType="int" visibility="public"/>
+        <Method name="getOver" returnType="boolean" visibility="public"/>
+        <Method name="getPlayer1" returnType="Player" visibility="public"/>
+        <Method name="getPlayer2" returnType="Player" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="HumanPlayer" package="model" visibility="public" xPosition="65.0" yPosition="678.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Player" package="model" visibility="public" isAbstract="true" xPosition="344.0" yPosition="576.0">
+      <Fields>
+        <Field name="_color" type="Color" visibility="private"/>
+        <Field name="_id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getColor" returnType="Color" visibility="public"/>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setColor" returnType="void" visibility="public">
+          <Argument type="Color" name="color"/>
+        </Method>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Tile" package="model" visibility="public" xPosition="577.0" yPosition="370.0">
+      <Fields>
+        <Field name="_status" type="int" visibility="private"/>
+        <Field name="_effect" type="Effect" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="status"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setStatus" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="setEffect" returnType="void" visibility="public">
+          <Argument type="Effect" name="effect"/>
+        </Method>
+        <Method name="getEffect" returnType="Effect" visibility="public"/>
+        <Method name="getStatus" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="model.Game" target="model.Board" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.DeleteColumnEffect" target="model.Game" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="model.DisappearEffect" target="model.Effect"/>
+    <IsRelation name="is" source="model.DeleteLineEffect" target="model.Effect"/>
+    <UseRelation source="model.Board" target="model.Tile" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Tile" target="model.Effect" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Game" target="model.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.ChangeColorEffect" target="model.Game" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="model.DeleteColumnEffect" target="model.Effect"/>
+    <UseRelation source="model.DeleteLineEffect" target="model.Game" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="_player1" source="model.Game" target="model.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="_player2" source="model.Game" target="model.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="_board" source="model.Game" target="model.Board" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="_currentPlayer" source="model.Game" target="model.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="model.ChangeColorEffect" target="model.Effect"/>
+    <IsRelation name="is" source="model.HumanPlayer" target="model.Player"/>
+    <HasRelation name="_effect" source="model.Tile" target="model.Effect" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.EffectFactory" target="model.Effect" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Effect" target="model.Game" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.DisappearEffect" target="model.Game" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
