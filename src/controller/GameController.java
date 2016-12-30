@@ -25,7 +25,7 @@ import view.GameView;
  *
  */
 public final class GameController {
-
+    
     private final GameView _view;
     private final Game _game;
 

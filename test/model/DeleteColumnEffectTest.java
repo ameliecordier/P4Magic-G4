@@ -13,10 +13,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Classe de tests de l'effet Disappear 
+ * Classe de tests de l'effet Delete 
  * Principe de l'effet : un pion joué sur
- * une case portant l'effet Disappear disparaît immédiatement. Conséquences :
- * l'état du jeu n'est pas modifié, le pion joué n'apparaît pas sur la grille,
+ * une case portant l'effet Delete ne disparaît pas. Conséquences :
+ * l'état du jeu n'est pas modifié, le pion joué apparaît  sur la grille, et la colonne est injouable
  * et le tour de jeu change
  *
  * @author acordier
@@ -51,6 +51,13 @@ public class DeleteColumnEffectTest {
     public void tearDown() {
     }
 
+      /**
+     * Test du bon fonctionnement du jeu, en dehors de l'effet 
+     * Résultats attendus après le coup : 
+     * - Le pion est ajouté
+     * - La colonne est injouable
+     * - Passage au joueur suivant
+     */
 
     @Test
     public void testDeleteColumnEffectNormalGame() {
@@ -81,6 +88,11 @@ public class DeleteColumnEffectTest {
         assertEquals(nb_tokens_before + 1, nb_tokens_after);
     }
 
+    /**
+     * Test de DeleteColumnEffect sur la grille vide
+     * Vérification de l'état de la tuile après application de l'effet 
+     * Résultats attendus : la case doit être remplie et la colonne injouable
+     */
     @Test
     public void testDeleteColumnEffectEmptyGame() {
 
@@ -100,7 +112,12 @@ public class DeleteColumnEffectTest {
 
     }
 
-
+     /**
+     * Test de DeleteColumnEffect sur grille vide 
+     * Vérification du nombre de jetons
+     * après jeu 
+     * Résultat attendu : le nombre doit être égal à 0
+     */
     @Test
     public void testDeleteColumnEffectEmptyGameWithTilesNumber() {
 
@@ -116,7 +133,14 @@ public class DeleteColumnEffectTest {
 
     }
 
-
+    /**
+     * Test de DeleteColumnEffect sur grille pré-remplie 
+     * Vérification de l'état de
+     * la tuile après application de l'effet 
+     * Résultat attendu : la case est vide, la colonne injouable
+     * l'effet doit être sur la case 
+     * et le tour doit être passé
+     */
     @Test
     public void testDeleteColumnEffectFilledGame() {
 

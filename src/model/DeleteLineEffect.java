@@ -1,3 +1,7 @@
+/**
+ * MagicP4
+ * IUT Lyon 1 - 2016
+ */
 package model;
 
 /**
@@ -6,6 +10,12 @@ package model;
  */
 public class DeleteLineEffect extends Effect{
     
+    /**
+     * 
+     * @param line
+     * @param column
+     * @param game 
+     */
     @Override
     public void playEffect(int line, int column, Game game) {
 

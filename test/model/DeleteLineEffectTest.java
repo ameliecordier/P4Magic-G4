@@ -13,10 +13,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Classe de tests de l'effet Disappear 
+ * Classe de tests de l'effet DeleteLine 
  * Principe de l'effet : un pion joué sur
- * une case portant l'effet Disappear disparaît immédiatement. Conséquences :
- * l'état du jeu n'est pas modifié, le pion joué n'apparaît pas sur la grille,
+ * une case portant l'effet DeleteLine est ajouté. Conséquences :
+ * l'état du jeu n'est pas modifié, le pion joué apparaît sur la grille, la ligne est injouable
  * et le tour de jeu change
  *
  * @author acordier
@@ -52,6 +52,13 @@ public class DeleteLineEffectTest {
     }
 
 
+      /**
+     * Test du bon fonctionnement du jeu, en dehors de l'effet 
+     * Résultats attendus après le coup : 
+     * - Le pion est ajouté
+     * - La ligne est injouable
+     * - Passage au joueur suivant
+     */
     @Test
     public void testDeleteLineEffectNormalGame() {
 
@@ -80,7 +87,12 @@ public class DeleteLineEffectTest {
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
         assertEquals(nb_tokens_before + 1, nb_tokens_after);
     }
-
+    
+    /**
+     * Test de DeleteLineEffect sur la grille vide
+     * Vérification de l'état de la tuile après application de l'effet 
+     * Résultats attendus : la case doit être remplie et la ligne injouable
+     */
     @Test
     public void testDeleteLineEffectEmptyGame() {
 
@@ -100,7 +112,12 @@ public class DeleteLineEffectTest {
 
     }
 
-
+     /**
+     * Test de DeleteLineEffect sur grille vide 
+     * Vérification du nombre de jetons
+     * après jeu 
+     * Résultat attendu : le nombre doit être égal à 0
+     */
     @Test
     public void testDeleteLineEffectEmptyGameWithTilesNumber() {
 
@@ -116,7 +133,14 @@ public class DeleteLineEffectTest {
 
     }
 
-
+    /**
+     * Test de DeleteLineEffect sur grille pré-remplie 
+     * Vérification de l'état de
+     * la tuile après application de l'effet 
+     * Résultat attendu : la case est remplie, la ligne injouable
+     * l'effet doit être sur la case 
+     * et le tour doit être passé
+     */
     @Test
     public void testDeleteLineEffectFilledGame() {
 

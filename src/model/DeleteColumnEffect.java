@@ -7,7 +7,12 @@ package model;
 public class DeleteColumnEffect extends Effect{
 
     
-    
+    /**
+     * 
+     * @param line
+     * @param column
+     * @param game 
+     */
     @Override
     public void playEffect(int line, int column, Game game) {
 
