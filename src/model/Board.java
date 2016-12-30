@@ -19,8 +19,8 @@ public class Board {
     /**
      * Board constructor
      *
-     * @param width
-     * @param height
+     * @param width la largeur
+     * @param height la hauteur
      */
     public Board(int width, int height) {
 
@@ -68,7 +68,7 @@ public class Board {
     /**
      * Set the percentage of chances of having and effect on a tile
      *
-     * @param tileEffectChance
+     * @param tileEffectChance le pourcentage des effets
      */
     public void setEffectChances(int tileEffectChance) {
         this._tileEffectChance = tileEffectChance;
@@ -77,7 +77,7 @@ public class Board {
     /**
      * Set the width of a the board
      *
-     * @param width
+     * @param width la largeur
      */
     public void setWidth(int width) {
         this._width = width;
@@ -86,7 +86,7 @@ public class Board {
     /**
      * Set the height of the board
      *
-     * @param height
+     * @param height la hauteur
      */
     public void setHeight(int height) {
         this._height = height;
@@ -95,8 +95,8 @@ public class Board {
     /**
      * Get a tile from the board (i and j are coordinates)
      *
-     * @param i
-     * @param j
+     * @param i correspond a la ligne
+     * @param j correspond a la colonne
      * @return a tile
      */
     public Tile getTileIJ(int i, int j) {

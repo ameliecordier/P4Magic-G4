@@ -12,9 +12,9 @@ public class DisappearEffect extends Effect {
 
     /**
      * 
-     * @param line
-     * @param column
-     * @param game 
+     * @param line la ligne
+     * @param column la colonne
+     * @param game la partie
      */
     @Override
     public void playEffect(int line, int column, Game game) {
