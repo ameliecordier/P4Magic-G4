@@ -243,7 +243,7 @@ public final class GameController {
 
         this._view.getEndGameQuit().addActionListener(_endGameQuit);
         this._view.getEndGamePlay().addActionListener(_endGamePlay);
-        this._view.getEndGameFrame().addWindowListener(_gameClosingWindow);
+        this._view.getEndGameFrame().addWindowListener(_endGameClosingWindow);
 
     }
 
