@@ -83,8 +83,6 @@ public class Utils {
      */
     static void simulateFullGame(Game aGame){
         
-        int height = aGame.getBoard().getHeight();
-        
         aGame.getBoard().getTileIJ(1, 0).setStatus(1);
         aGame.getBoard().getTileIJ(1, 1).setStatus(2);
         aGame.getBoard().getTileIJ(1, 2).setStatus(1);
