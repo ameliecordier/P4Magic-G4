@@ -2,7 +2,7 @@
 package model;
 
 /**
- *
+ * effet attendu : vide la colonne où le pion doit être joué
  * @author Morgane
  */
 public class ColumnDisappearEffect extends Effect {
@@ -19,11 +19,9 @@ public class ColumnDisappearEffect extends Effect {
         int player1_id = game.getPlayer1().getId();
         int player2_id = game.getPlayer2().getId();
 
-        /* prendre tout les i> line
-        met la case de la colonne à -1 => vide*/
-      
        
         for (int i=0;i<game.getBoard().getHeight();i++){
+            // met lestatut à -1 pour que la case soit vide
             game.getBoard().getTileIJ(i, column).setStatus(-1);
         }
     }
