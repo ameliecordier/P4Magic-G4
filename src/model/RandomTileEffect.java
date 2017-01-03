@@ -7,7 +7,13 @@ import java.util.Random;
  * @author Leen
  */
 public class RandomTileEffect extends Effect {
-
+    /**
+     * This effect inserts a new tile (same colour as the current player)
+     * randomly in the board
+     * @param line
+     * @param column
+     * @param game 
+     */
     @Override
     public void playEffect(int line, int column, Game game) {
         int tile_id = game.getBoard().getTileIJ(line, column).getStatus();

@@ -7,7 +7,8 @@ package model;
 public class DisappearColumnEffect extends Effect {
     
     /**
-     * This effect delete all the tiles of the column where the tile has just been played
+     * This effect delete all the tiles of the column where the tile has just 
+     * been played
      * @param line
      * @param column
      * @param game 

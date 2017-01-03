@@ -73,7 +73,7 @@ public class RandomTileEffectTest {
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
         // - il y a bien un pion de plus sur le plateau
-        assertTrue("Doit être d'effet disappear", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof RandomTileEffect);
+        assertTrue("Doit être d'effet Random Tile", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof RandomTileEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
         assertEquals(nb_tokens_before + 1, nb_tokens_after);
     }
@@ -83,7 +83,7 @@ public class RandomTileEffectTest {
      * Vérification de l'état de la
      * tuile après application de l'effet 
      * Résultats attendus : la case doit être
-     * vide, le tour de jeu doit être passé
+     * remplie, une autre case est jouée, le tour de jeu doit être passé
      */
     @Test
     public void testRandomTileEffectEmptyGame() {
@@ -102,33 +102,12 @@ public class RandomTileEffectTest {
         int nb_tokens_after = aGame.getBoard().getTotalTilesCount();
 
         // Vérifications :
-        // - 2 jetons ont été rajouté sur la grille
+        // - 2 jetons ont été jouée sur la grille
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
         assertEquals(2, nb_tokens_after);
-        assertTrue("Doit être d'effet disappear", aGame.getBoard().getTileIJ(height - 1, 0).getEffect() instanceof RandomTileEffect);
+        assertTrue("Doit être d'effet Random Tile", aGame.getBoard().getTileIJ(height - 1, 0).getEffect() instanceof RandomTileEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
-
-    }
-
-    /**
-     * Test de RandomTileEffect sur grille vide 
-     * Vérification du nombre de jetons
-     * après jeu 
-     * Résultat attendu : le nombre doit être égal à 0
-     */
-    @Test
-    public void testRandomTileEffectEmptyGameWithTilesNumber() {
-
-        // Effet fixé sur une case 
-        int height = aGame.getBoard().getHeight();
-        aGame.getBoard().getTileIJ(height - 1, 0).setEffect(new RandomTileEffect());
-
-        // Coup joué sur cette case 
-        aGame.playMove(0);
-
-        // Vérification que le nombre de jetons au total est égal à 0  
-        assertEquals(2, aGame.getBoard().getTotalTilesCount());
 
     }
 
@@ -137,7 +116,7 @@ public class RandomTileEffectTest {
      * Vérification de l'état de
      * la tuile après application de l'effet 
      * Résultat attendu : la case doit
-     * être vide, l'effet doit être sur la case 
+     * être remplie, l'effet doit être sur la case, un 2e jeton doit être joué 
      * et le tour doit être passé
      */
     @Test
@@ -158,12 +137,58 @@ public class RandomTileEffectTest {
         aGame.playMove(0);
 
         // Vérifications :
-        // - la case est bien vide après
+        // - la case est bien remplie après
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
-        assertEquals(-1, aGame.getBoard().getTileIJ(height - 3, 0).getStatus());
-        assertTrue("Doit être d'effet disappear", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof RandomTileEffect);
+        assertEquals(1, aGame.getBoard().getTileIJ(height - 3, 0).getStatus());
+        assertTrue("Doit être d'effet Random Tile", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof RandomTileEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
 
+    }
+    
+    public void testRandomTileEffectOtherEffect () {
+        // On pré-remplit le plateau pour les besoins de la simulation 
+        Utils.simulateAGame(aGame);
+
+        // Effet fixé sur une case (qui n'est pas encore remplie)
+        int height = aGame.getBoard().getHeight();
+        // height-3 correspond à la première case vide dans la colonne O, vu que l'on a déjà joué deux coups dans cette colonne
+        aGame.getBoard().getTileIJ(height - 3, 0).setEffect(new RandomTileEffect());
+        
+        //Autres effets fixés sur des cases non remplies
+        aGame.getBoard().getTileIJ(height - 2, 1).setEffect(new RandomTileEffect());
+        aGame.getBoard().getTileIJ(height - 3, 2).setEffect(new ChangeColorEffect());
+        aGame.getBoard().getTileIJ(height - 2, 3).setEffect(new DisappearEffect());
+        aGame.getBoard().getTileIJ(height - 3, 4).setEffect(new DisappearColumnEffect());
+
+        // Récupération de l'ID du joueur avant que le coup soit joué 
+        int id_player = aGame.getCurrentPlayer().getId();
+
+        // Coup joué sur cette case 
+        aGame.playMove(0);
+        
+        // Vérifications
+        // - la case jouée est bien remplie après
+        // - le 2e jeton joue l'effet de sa case s'il existe
+        // - le tour de jeu a bien changé
+        
+        assertEquals(1, aGame.getBoard().getTileIJ(height - 3, 0).getStatus());
+        if (aGame.getBoard().getTileIJ(height - 2, 1).getStatus()==1)
+        {
+            assertTrue("Doit être d'effet Random Tile", aGame.getBoard().getTileIJ(height - 2, 1).getEffect() instanceof RandomTileEffect);
+        }
+        else if (aGame.getBoard().getTileIJ(height - 3, 2).getStatus()==1)
+        {
+            assertTrue("Doit être d'effet Change Color", aGame.getBoard().getTileIJ(height - 3, 2).getEffect() instanceof ChangeColorEffect);
+        }
+        else if (aGame.getBoard().getTileIJ(height - 2, 3).getStatus()==1)
+        {
+            assertTrue("Doit être d'effet Disappear", aGame.getBoard().getTileIJ(height - 2, 3).getEffect() instanceof DisappearEffect);
+        }
+        else if (aGame.getBoard().getTileIJ(height - 3, 4).getStatus()==1)
+        {
+            assertTrue("Doit être d'effet Disappear Column", aGame.getBoard().getTileIJ(height - 3, 4).getEffect() instanceof DisappearColumnEffect);
+        }
+        assertTrue(aGame.getCurrentPlayer().getId() != id_player);
     }
 }
