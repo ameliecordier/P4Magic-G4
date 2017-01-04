@@ -9,7 +9,7 @@ import java.util.Random;
 public class RandomTileEffect extends Effect {
     /**
      * This effect inserts a new tile (same colour as the current player)
-     * randomly in the board
+     * randomly in the grid
      * @param line
      * @param column
      * @param game 

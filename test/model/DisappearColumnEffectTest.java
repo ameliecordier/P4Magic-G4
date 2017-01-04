@@ -1,7 +1,11 @@
 package model;
 
 /**
- *
+ * Classe de tests de l'effet Disappear Column
+ * Principe de l'effet : un pion joué sur une case portant l'effet Disappear
+ * Column fait disparaître la colonne dans laquelle le pion est joué
+ * Conséquences : Toute la colonne disparaît, le pion joué n'apparaît pas sur
+ * la grille et le tour de jeu change
  * @author p1517348
  */
 
@@ -39,6 +43,11 @@ public class DisappearColumnEffectTest {
     public void tearDown() {
     }
     
+    /**
+     * Test du bon fonctionnement du jeu, en dehors de l'effet Résultats
+     * attendus après le coup : - un pion de plus sur le plateau - le tour de
+     * jeu est passé - l'effet a bien été appliqué
+     */
     @Test
     public void testDisappearColumnEffectNormalGame() {
 

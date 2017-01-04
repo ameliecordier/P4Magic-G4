@@ -9,8 +9,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
- * @author Leen
+ * Classe de tests de l'effet Random Tile
+ * Principe de l'effet : un pion joué sur une case portant l'effet Random Tile
+ * ajoute un pion au hasard dans une des colonnes.
+ * Conséquences : Un autre effet peut être joué si le pion arrive dessus
+ * et le tour de jeu change
+ * @author p1517348
  */
 public class RandomTileEffectTest {
     static Game aGame;
@@ -189,6 +193,7 @@ public class RandomTileEffectTest {
         {
             assertTrue("Doit être d'effet Disappear Column", aGame.getBoard().getTileIJ(height - 3, 4).getEffect() instanceof DisappearColumnEffect);
         }
+        
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
     }
 }

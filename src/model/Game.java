@@ -121,11 +121,17 @@ public final class Game extends Observable {
 
             for (int j = 0; j <= (this._board.getWidth() - 4); ++j) {
 
-                if (this._player1.getId() == this._board.getTileIJ(i, j).getStatus() && this._player1.getId() == this._board.getTileIJ(i, j + 1).getStatus() && this._player1.getId() == this._board.getTileIJ(i, j + 2).getStatus() && this._player1.getId() == this._board.getTileIJ(i, j + 3).getStatus()) {
+                if (this._player1.getId() == this._board.getTileIJ(i, j).getStatus()
+                && this._player1.getId() == this._board.getTileIJ(i, j + 1).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(i, j + 2).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(i, j + 3).getStatus()) {
                     return _player1;
                 }
 
-                if (this._player2.getId() == this._board.getTileIJ(i, j).getStatus() && this._player2.getId() == this._board.getTileIJ(i, j + 1).getStatus() && this._player2.getId() == this._board.getTileIJ(i, j + 2).getStatus() && this._player2.getId() == this._board.getTileIJ(i, j + 3).getStatus()) {
+                if (this._player2.getId() == this._board.getTileIJ(i, j).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(i, j + 1).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(i, j + 2).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(i, j + 3).getStatus()) {
                     return _player2;
                 }
 
@@ -138,11 +144,17 @@ public final class Game extends Observable {
 
             for (int j = 0; j <= (this._board.getHeight() - 4); ++j) {
 
-                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 1, i).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 2, i).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 3, i).getStatus()) {
+                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(j + 1, i).getStatus()
+                && this._player1.getId() == this._board.getTileIJ(j + 2, i).getStatus()
+                && this._player1.getId() == this._board.getTileIJ(j + 3, i).getStatus()) {
                     return _player1;
                 }
 
-                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 1, i).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 2, i).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 3, i).getStatus()) {
+                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 1, i).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 2, i).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 3, i).getStatus()) {
                     return _player2;
                 }
 
@@ -155,11 +167,17 @@ public final class Game extends Observable {
 
             for (int j = 0; j <= (this._board.getHeight() - 4); ++j) {
 
-                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 1, i + 1).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 2, i + 2).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 3, i + 3).getStatus()) {
+                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(j + 1, i + 1).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(j + 2, i + 2).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(j + 3, i + 3).getStatus()) {
                     return _player1;
                 }
 
-                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 1, i + 1).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 2, i + 2).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 3, i + 3).getStatus()) {
+                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 1, i + 1).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 2, i + 2).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 3, i + 3).getStatus()) {
                     return _player2;
                 }
 
@@ -167,16 +185,22 @@ public final class Game extends Observable {
 
         }
 
-        //Vérification des diagonales gauches
+        //Look for win combinations on left diags
         for (int i = 3; i < this._board.getWidth(); ++i) {
 
             for (int j = 0; j <= (this._board.getHeight() - 4); ++j) {
 
-                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 1, i - 1).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 2, i - 2).getStatus() && this._player1.getId() == this._board.getTileIJ(j + 3, i - 3).getStatus()) {
+                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(j + 1, i - 1).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(j + 2, i - 2).getStatus() 
+                && this._player1.getId() == this._board.getTileIJ(j + 3, i - 3).getStatus()) {
                     return _player1;
                 }
 
-                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 1, i - 1).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 2, i - 2).getStatus() && this._player2.getId() == this._board.getTileIJ(j + 3, i - 3).getStatus()) {
+                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 1, i - 1).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 2, i - 2).getStatus() 
+                && this._player2.getId() == this._board.getTileIJ(j + 3, i - 3).getStatus()) {
                     return _player2;
                 }
 
