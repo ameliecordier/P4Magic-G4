@@ -23,7 +23,6 @@ public final class Game extends Observable {
     private Player _currentPlayer;
     private int _winner;
     private boolean _over;
-
     /**
      * Game constructor A game has two players... for now.
      */
@@ -31,7 +30,6 @@ public final class Game extends Observable {
 
         this._winner = -1;
         this._over = false;
-
         this._player1 = new HumanPlayer(1, Color.RED);
         this._player2 = new HumanPlayer(2, Color.YELLOW);
         this._currentPlayer = this._player1;
@@ -39,7 +37,7 @@ public final class Game extends Observable {
         init();
 
     }
-
+    
     /**
      * Game initialiser
      */

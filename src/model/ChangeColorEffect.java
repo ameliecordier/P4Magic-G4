@@ -12,7 +12,7 @@ public class ChangeColorEffect extends Effect {
 
     /**
      * This effect changes the color of the tile that has just been played and
-     * thus the owner of the tile)
+     * thus the owner of the tile
      *
      * @param line
      * @param column

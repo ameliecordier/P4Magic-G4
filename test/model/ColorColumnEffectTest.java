@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
 
 /**
  * Test class for ColorColumnEffect
+ * Principe de l'effet : lorsqu'un pion est joué sur une case portant l'effet,
+ * un pion de la couleur du pion joué est ajouté dans chaque colonne.
  * @author Alice
  */
 public class ColorColumnEffectTest {
