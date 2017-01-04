@@ -19,8 +19,12 @@ public class Utils {
         for(int i=0; i<10; i++){
             aGame.playMove(i);
         }
-        for(int i=0; i<7; i=i+2){
-            aGame.playMove(i);
+//        // ATTENTION ! Cette boucle ne crée pas la grille décrite ci-dessous !
+//        for(int i=0; i<7; i=i+2){
+//            aGame.playMove(i);
+//        }
+        for(int i=0; i<5; i++){
+            aGame.playMove(2*i);
         }
         
         //System.out.println(aGame.getBoard().toStringSymbols());
@@ -68,6 +72,41 @@ public class Utils {
         ----------
         oo--------
         xxxx------
+        */
+        
+    }
+    
+    /**
+     * Méthode qui place quelques coups sur le plateau de sorte 
+     * à ce que le plateau soit plein à l'exception de la ligne du haut
+     * @param aGame 
+     */
+    static void simulateFullGame(Game aGame){
+        
+        aGame.getBoard().getTileIJ(1, 0).setStatus(1);
+        aGame.getBoard().getTileIJ(1, 1).setStatus(2);
+        aGame.getBoard().getTileIJ(1, 2).setStatus(1);
+        aGame.getBoard().getTileIJ(1, 3).setStatus(2);
+        aGame.getBoard().getTileIJ(1, 4).setStatus(1);
+        aGame.getBoard().getTileIJ(1, 5).setStatus(2);
+        aGame.getBoard().getTileIJ(1, 6).setStatus(1);
+        aGame.getBoard().getTileIJ(1, 7).setStatus(2);
+        aGame.getBoard().getTileIJ(1, 8).setStatus(1);
+        aGame.getBoard().getTileIJ(1, 9).setStatus(2);
+        
+        /*
+        System.out.println(aGame.getBoard().toStringSymbols());
+        
+        ----------
+        xoxoxoxoxo
+        ----------
+        ----------
+        ----------
+        ----------
+        ----------
+        ----------
+        ----------
+        ----------
         */
         
     }

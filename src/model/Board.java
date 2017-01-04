@@ -238,6 +238,31 @@ public class Board {
         return count;
 
     }
+    
+        /**
+     * Returns the number of tiles owned by player neutral on the board
+     *
+     * @return numberoftiles of player neutral
+     */
+    public int getTilesCountPlayerNeutral() {
+
+        int count = 0;
+
+        for (int i = 0; i < this._height; ++i) {
+
+            for (int j = 0; j < this._width; ++j) {
+
+                if (this._board[i][j].getStatus() == 403) {
+                    count++;
+                }
+
+            }
+
+        }
+
+        return count;
+
+    }
 
     /**
      * Returns the total number of tiles on the board
@@ -245,7 +270,7 @@ public class Board {
      * @return numberoftiles
      */
     public int getTotalTilesCount() {
-        return getTilesCountPlayer1() + getTilesCountPlayer2();
+        return getTilesCountPlayer1() + getTilesCountPlayer2() + getTilesCountPlayerNeutral();
     }
 
 }

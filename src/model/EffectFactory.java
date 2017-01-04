@@ -21,7 +21,7 @@ public class EffectFactory {
      */
     public static Effect createEffect() {
         int min = 0;
-        int max = 0;
+        int max = 3;
         Random rand = new Random();
         //Tire un nombre aléatoire entre min et max compris
         int random = rand.nextInt(max - min + 1) + min;
@@ -29,13 +29,18 @@ public class EffectFactory {
         switch (random) {
 
             case 0:
+                return new CondemnedLineEffect();
+            case 1:
+                return new DisappearEffect();
+            case 2:
                 return new ChangeColorEffect();
-            //case 1:
-            //    return new DisappearEffect();
+            case 3:
+                return new ChangeNeighborsColorEffect();
+
         }
 
         return null;
 
     }
-    
+
 }
