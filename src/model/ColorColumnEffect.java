@@ -1,3 +1,7 @@
+/**
+ * MagicP4
+ * IUT Lyon 1 - 2016
+ */
 package model;
 
 /**
