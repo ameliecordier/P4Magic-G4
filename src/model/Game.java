@@ -23,7 +23,7 @@ public final class Game extends Observable {
     private final Player _neutral;
     private Player _currentPlayer;
     private int _winner;
-    private boolean _over;
+    protected boolean _over;
 
     /**
      * Game constructor A game has two players... for now.

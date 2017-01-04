@@ -28,6 +28,10 @@ public class CondemnedLineEffect extends Effect {
         for (int i = 0; i < game.getBoard().getWidth(); i++) {
             game.getBoard().getTileIJ(line, i).setStatus(neutral_id);
         }
+        
+        if(line==0) {
+            game._over=true;
+        }
     }
 
 }
