@@ -5,8 +5,9 @@
 package model;
 
 /**
- *
- * @author hakkahi - IUT Lyon 1 - 2016
+ * This effect condamn all the line of the tile that has just been played.
+ * @author Kostia M. &amp; Simon P. - IUT Lyon 1 - 2016
+ * 
  */
 public class CondemnedLineEffect extends Effect {
 

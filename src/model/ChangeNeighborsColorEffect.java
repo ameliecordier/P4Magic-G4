@@ -1,8 +1,9 @@
 package model;
 
 /**
- *
- * @author Kostia & Simon
+ * This effect toggles the color of the 7 neighbors of the tile that has
+ * just been played and thus the owner of the tiles
+ * @author Kostia M. &amp; Simon P. - IUT Lyon 1 - 2016
  */
 public class ChangeNeighborsColorEffect extends Effect {
 
@@ -56,6 +57,13 @@ public class ChangeNeighborsColorEffect extends Effect {
         }
     }
 
+    /**
+     * Toggle the color of the tile at the position (line, column)
+     * 
+     * @param line
+     * @param column
+     * @param game
+     */
     public void toggleTileColor(int line, int column, Game game) {
 
         int tile_id = game.getBoard().getTileIJ(line, column).getStatus();
