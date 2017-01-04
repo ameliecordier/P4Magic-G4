@@ -23,6 +23,7 @@ public final class Game extends Observable {
     private Player _currentPlayer;
     private int _winner;
     private boolean _over;
+    private static int b=0;
 
     /**
      * Game constructor A game has two players... for now.
@@ -77,8 +78,13 @@ public final class Game extends Observable {
                 this._board.getTileIJ(i, column).setStatus(this._currentPlayer.getId());
 
             }
-
-            if (this._board.getTileIJ(i, column).getEffect() != null) {
+            
+            /*Chaque fois qu'un effet est joué on incrémente la variable b,
+            au bout de 3 fois, l'effet ne peut plus être joué
+            */
+            
+            if (this._board.getTileIJ(i, column).getEffect() != null && b<3) {
+                b++;
               
                 this._board.getTileIJ(i, column).getEffect().playEffect(i, column, this);
                 
