@@ -147,5 +147,34 @@ public class CondemnedLineEffectTest {
         assertTrue(beforeColorDown == afterColorDown);
         assertTrue(beforeColorDown == -1);
     }
+    
+        /**
+     * Test du bon fonctionnement de l'effet On place l'effect sur une ligne
+     * sur la ligne tout en haut de la grille. Le jeu doit donc normalement se terminer.
+     * Résultats attendus après le coup joué :
+     * - la partie de termine sur un Draw!
+     */
+    @Test
+    public void testCondemnedLineEffectEndGame() {
+
+        Utils.simulateFullGame(aGame);
+
+        int height = aGame.getBoard().getHeight();
+        int width = aGame.getBoard().getWidth();
+        aGame.getBoard().getTileIJ(0, 0).setEffect(new CondemnedLineEffect());
+
+        // Récupération avant que le coup soit joué 
+        boolean isOverBefore = aGame.getOver();
+ 
+        aGame.playMove(0);
+
+        // // Récupération après que le coup soit joué 
+        boolean isOverAfter = aGame.getOver();
+
+        // Vérifications :
+        // - le booléen isOverAfter a la valeur false avant le coup et true après le coup
+        assertEquals(isOverBefore, false);
+        assertEquals(isOverAfter, true);
+    }
 
 }
