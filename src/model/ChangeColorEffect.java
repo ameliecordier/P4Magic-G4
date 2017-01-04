@@ -14,9 +14,9 @@ public class ChangeColorEffect extends Effect {
      * This effect changes the color of the tile that has just been played and
      * thus the owner of the tile)
      *
-     * @param line
-     * @param column
-     * @param game
+     * @param line représente la ligne concernée
+     * @param column représente la colonne concernée
+     * @param game représente la partie en cours
      */
     @Override
     public void playEffect(int line, int column, Game game) {
