@@ -6,11 +6,11 @@ package model;
 public class DisappearLineEffect extends Effect {
 
     /**
-     *
+     * Élimine chaque tuile sur la ligne de la case affectée
      * @author Alexi 
-     * @param line
-     * @param column
-     * @param game
+     * @param line représente la ligne concernée
+     * @param column représente la colomne concernée
+     * @param game représente la partie en cours
      */
     @Override
     public void playEffect(int line, int column, Game game) {

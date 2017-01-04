@@ -11,7 +11,8 @@ package model;
 public class DisappearEffect extends Effect {
 
     /**
-     * TODO
+     * Cet effet fait disparaitre la le jeton posé à cette case. 
+     * Condamnant ainsi la colonne.
      */
     @Override
     public void playEffect(int line, int column, Game game) {
