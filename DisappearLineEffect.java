@@ -19,11 +19,11 @@ public class DisappearLineEffect extends Effect {
         int player1_id = game.getPlayer1().getId();
         int player2_id = game.getPlayer2().getId();
 
-        //we make the line disappear
+        //on fait disparaitre la ligne 
         for (int i = 0; i < 10; i++) {
             game._board.getTileIJ(line, i).setStatus(-1);
         }
-        //then we place 
+        //on remet les pièces en place si nécessaire
         for (int i = 0; i < 10; i++) {
             for (int j = line; j >= 0; j--) {
                 tile_id = game._board.getTileIJ(j, i).getStatus();
