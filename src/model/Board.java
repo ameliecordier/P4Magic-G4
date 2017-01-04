@@ -198,15 +198,12 @@ public class Board {
 
         int count = 0;
 
-        for (int j = 0; j < this._width; ++j) {
+        for (int i = 0; i < this._height; ++i) {
 
-            for (int i = 0; i < this._height; ++i) {
+            for (int j = 0; j < this._width; ++j) {
 
                 if (this._board[i][j].getStatus() == 1) {
                     count++;
-                }
-                else if (this._board[i][j].getStatus() == -1){
-                    break;
                 }
 
             }
@@ -225,20 +222,21 @@ public class Board {
     public int getTilesCountPlayer2() {
 
         int count = 0;
-        
-        for (int j = 0; j < this._width; ++j) {
-            for (int i = 0; i < this._height; ++i) {
+
+        for (int i = 0; i < this._height; ++i) {
+
+            for (int j = 0; j < this._width; ++j) {
 
                 if (this._board[i][j].getStatus() == 2) {
                     count++;
                 }
-                else if (this._board[i][j].getStatus() == -1){
-                    break;
-                }
 
             }
+
         }
+
         return count;
+
     }
 
     /**
@@ -247,24 +245,7 @@ public class Board {
      * @return numberoftiles
      */
     public int getTotalTilesCount() {
-        int count = 0;
-        
-        for (int j = 0; j < this._width; ++j) {
-            for (int i = 0; i < this._height; ++i) {
-
-                if (this._board[i][j].getStatus() == 1) {
-                    count++;
-                }
-                else if (this._board[i][j].getStatus() == 2) {
-                    count++;
-                }
-                else if (this._board[i][j].getStatus() == -1){
-                    break;
-                }
-
-            }
-        }
-        return count;
-    
+        return getTilesCountPlayer1() + getTilesCountPlayer2();
     }
+
 }
