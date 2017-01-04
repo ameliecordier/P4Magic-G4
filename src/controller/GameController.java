@@ -271,7 +271,7 @@ public final class GameController {
      * Start a new game method
      */
     private void startGame() {
-
+         
         int width = 10;
         int height = 10;
 
