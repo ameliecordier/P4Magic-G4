@@ -245,7 +245,15 @@ public class Board {
      * @return numberoftiles
      */
     public int getTotalTilesCount() {
-        return getTilesCountPlayer1() + getTilesCountPlayer2();
+        int count = 0;
+        for (int i = 0; i < this._height; ++i) {
+            for (int j = 0; j < this._width; ++j) {
+                if (this._board[i][j].getStatus() == 2 || this._board[i][j].getStatus() == 1) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 }
