@@ -8,6 +8,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Antonin-Christian
+ *
+ */
 public class DisappearLineEffectTest {
 	
 	static Game aGame;
