@@ -238,7 +238,8 @@ public class Board {
         return count;
 
     }
-
+    
+    
     /**
      * Returns the total number of tiles on the board
      *
@@ -247,5 +248,50 @@ public class Board {
     public int getTotalTilesCount() {
         return getTilesCountPlayer1() + getTilesCountPlayer2();
     }
-
+    
+//    /**
+//     * Returns the total number of tiles on the board
+//     *
+//     * @return numberoftiles
+//     */
+//    public int getTilesCount(){
+//    	int count = 0;
+//
+//        for (int i = 0; i < this._height; ++i) {
+//
+//            for (int j = 0; j < this._width; ++j) {
+//
+//                count++;
+//
+//            }
+//
+//        }
+//
+//        return count;
+//    }
+//    
+//    /**
+//     * Returns the number of tiles on the board for the specified player
+//     *
+//     * @param player_id
+//     * @return numberoftiles
+//     */
+//    public int getTilesCount(int player_id){
+//    	int count = 0;
+//
+//        for (int i = 0; i < this._height; ++i) {
+//
+//            for (int j = 0; j < this._width; ++j) {
+//
+//                if (this._board[i][j].getStatus() == player_id) {
+//                    count++;
+//                }
+//
+//            }
+//
+//        }
+//
+//        return count;
+//    }
+    
 }
