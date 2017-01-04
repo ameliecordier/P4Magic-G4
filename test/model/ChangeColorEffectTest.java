@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
  * Test class for ChangeColorEffect
  * @author Amélie Cordier - IUT Lyon 1 - 2016
  */
+
 public class ChangeColorEffectTest {
     
     static Game aGame;
