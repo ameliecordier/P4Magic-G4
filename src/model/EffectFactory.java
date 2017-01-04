@@ -20,22 +20,29 @@ public class EffectFactory {
      * @return an effect
      */
     public static Effect createEffect() {
-        int min = 0;
-        int max = 0;
         Random rand = new Random();
-        //Tire un nombre aléatoire entre min et max compris
-        int random = rand.nextInt(max - min + 1) + min;
-
+        //Tire un nombre aléatoire entre 0 et 5
+        int random = Math.abs(rand.nextInt(6));
+        
+        //Un effet est appliqué en fonction du nombre tiré au hasard
         switch (random) {
 
             case 0:
+                return new AddTileEffect();
+            case 1:
+                return new DisappearEffect();
+            case 2:
+                return new AddTileRandomEffect();
+            case 3:
+                return new DeleteColumnEffect();
+            case 4:
+                return new DeleteLineEffect();
+            case 5:
                 return new ChangeColorEffect();
-            //case 1:
-            //    return new DisappearEffect();
         }
 
         return null;
 
     }
-    
+
 }
