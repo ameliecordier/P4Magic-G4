@@ -12,10 +12,12 @@ public class DisappearEffect extends Effect {
 
     /**
      * TODO
+     * @param line
+     * @param column
+     * @param game
      */
     @Override
     public void playEffect(int line, int column, Game game) {
-
+        game.getBoard().getTileIJ(line, column).setStatus(-1);
     }
-
 }
