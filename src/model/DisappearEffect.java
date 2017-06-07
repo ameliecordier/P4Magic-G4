@@ -4,8 +4,6 @@
  */
 package model;
 
-import static javax.swing.Spring.height;
-
 /**
  *
  * @author hakkahi / acordier - IUT Lyon 1 - 2016
@@ -14,6 +12,9 @@ public class DisappearEffect extends Effect {
 
     /**
      * TODO
+     * @param line
+     * @param column
+     * @param game
      */
     @Override
     public void playEffect(int line, int column, Game game) {
