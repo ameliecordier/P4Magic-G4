@@ -52,7 +52,7 @@ public final class Game extends Observable {
     /**
      * Play move: given the id of a column, the token of the current player is
      * played in this column. The token falls in the column until it cannot fall
-     * anymore
+     * anymorerk
      *
      * @param column
      */

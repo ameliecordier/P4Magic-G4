@@ -112,6 +112,7 @@ public class DisappearEffectTest {
         // - la case est bien vide après
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
+        
         assertEquals(-1, aGame.getBoard().getTileIJ(height - 1, 0).getStatus());
         assertTrue("Doit être d'effet disappear", aGame.getBoard().getTileIJ(height - 1, 0).getEffect() instanceof DisappearEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
