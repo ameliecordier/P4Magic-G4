@@ -11,7 +11,7 @@ package model;
 public class DisappearEffect extends Effect {
 
     /**
-     * This effect erase the last tile that have been played
+     * This effect erase the last tile that has been played
      * 
      * @param line
      * @param column
