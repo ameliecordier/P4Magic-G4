@@ -29,9 +29,11 @@ public class EffectFactory {
         switch (random) {
 
             case 0:
-                return new ChangeColorEffect();
+                return new LineFallEffect ();
             //case 1:
-            //    return new DisappearEffect();
+             //   return new ChangeColorEffect();
+            //case 2:
+              //  return new DisappearEffect();
         }
 
         return null;

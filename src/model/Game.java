@@ -98,6 +98,41 @@ public final class Game extends Observable {
             notifyObservers();
         }
     }
+    
+        public void playMoveNoEffectNoChangeP(int column) {
+
+        int i;
+
+        if (this._board.getTileIJ(0, column).getStatus() == -1) {
+
+            for (i = 0; i < this._board.getHeight(); ++i) {
+
+                if (this._board.getTileIJ(i, column).getStatus() != -1) {
+                    break;
+                }
+
+            }
+
+            if (i > 0) {
+
+                i--;
+                this._board.getTileIJ(i, column).setStatus(this._currentPlayer.getId());
+
+            }
+
+            Player tmp = Win();
+            if (tmp != null) {
+                this._winner = tmp.getId();
+            }
+
+            isOver();
+
+            setChanged();
+            notifyObservers();
+        }
+    }
+        
+        
 
     /**
      * Make sure the player can play in the column
@@ -300,6 +335,10 @@ public final class Game extends Observable {
      */
     public Player getCurrentPlayer() {
         return this._currentPlayer;
+    }
+    
+    public void setCurrentPlayer(Player joueur){
+        this._currentPlayer = joueur;
     }
 
     /**
