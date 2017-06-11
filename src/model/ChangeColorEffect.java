@@ -21,6 +21,11 @@ public class ChangeColorEffect extends Effect {
     @Override
     public void playEffect(int line, int column, Game game) {
 
+        int a = super.incremente( line, column, game);
+        
+        if (a == 0){
+            return;
+        }
         int tile_id = game.getBoard().getTileIJ(line, column).getStatus();
         int player1_id = game.getPlayer1().getId();
         int player2_id = game.getPlayer2().getId();
@@ -32,5 +37,6 @@ public class ChangeColorEffect extends Effect {
         }
         game.getBoard().getTileIJ(line, column).setStatus(tile_id);
     }
+        
 
 }

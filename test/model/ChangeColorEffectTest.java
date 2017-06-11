@@ -19,18 +19,30 @@ public class ChangeColorEffectTest {
     
     static Game aGame;
     
+    /**
+     *
+     */
     public ChangeColorEffectTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
 
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
 
@@ -41,6 +53,9 @@ public class ChangeColorEffectTest {
 
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }

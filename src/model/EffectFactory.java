@@ -21,23 +21,24 @@ public class EffectFactory {
      */
     public static Effect createEffect() {
         int min = 0;
-        int max = 0;
+        int max = 3;
         Random rand = new Random();
         //Tire un nombre aléatoire entre min et max compris
-        int random = rand.nextInt(max - min + 1) + min;
+        int random;
+        
+        random = rand.nextInt(max - min+1) + min;
 
         switch (random) {
 
             case 0:
                 return new LineFallEffect ();
-            //case 1:
-             //   return new ChangeColorEffect();
-            //case 2:
-              //  return new DisappearEffect();
+            case 1:
+                return new ChangeColorEffect();
+            case 2:
+                return new DisappearEffect();
+            case 3:
+                return new RandomPlayEffect();
         }
-
         return null;
-
-    }
-    
+        }
 }

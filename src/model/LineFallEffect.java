@@ -9,6 +9,12 @@ public class LineFallEffect extends Effect {
     @Override
     public void playEffect(int line, int column, Game game) {
         
+        int a = super.incremente( line, column, game);
+        
+        if (a == 0){
+            return;
+        }
+        
         int idTile = game.getBoard().getTileIJ(line, column).getStatus();
         
         Player bob = null;

@@ -39,6 +39,28 @@ public final class Game extends Observable {
         init();
 
     }
+    
+    public Game(Color couleur1, Color couleur2) {
+
+        this._winner = -1;
+        this._over = false;
+
+        this._player1 = new HumanPlayer(1, couleur1);
+        this._player2 = new HumanPlayer(2, couleur2);
+        this._currentPlayer = this._player1;
+
+        init();
+
+    }
+    
+    
+    public void setCouleurP1(Color couleur){
+        this._player1.setColor(couleur);
+    }
+    
+    public void setCouleurP2(Color couleur){
+        this._player2.setColor(couleur);
+    }
 
     /**
      * Game initialiser

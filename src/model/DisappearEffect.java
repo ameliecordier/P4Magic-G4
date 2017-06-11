@@ -16,7 +16,13 @@ public class DisappearEffect extends Effect {
     @Override
     public void playEffect(int line, int column, Game game) {
         
-        game.getBoard().getTileIJ(line, column).setStatus(-1);
+        int a = super.incremente( line, column, game);
+        this.SetNbIterations(5);
+        
+        if (a == 0){
+            return;
+        }
+            game.getBoard().getTileIJ(line, column).setStatus(-1);
+        
     }
-
 }
