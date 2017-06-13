@@ -26,14 +26,15 @@ public final class Game extends Observable {
 
     /**
      * Game constructor A game has two players... for now.
+     * @param color1
+     * @param color2
      */
-    public Game() {
-
+    public Game(Color color1,Color color2) {
         this._winner = -1;
         this._over = false;
 
-        this._player1 = new HumanPlayer(1, Color.RED);
-        this._player2 = new HumanPlayer(2, Color.YELLOW);
+        this._player1 = new HumanPlayer(1,color1);                //Color.RED
+        this._player2 = new HumanPlayer(2,color2);                //Color.YELLOW
         this._currentPlayer = this._player1;
 
         init();

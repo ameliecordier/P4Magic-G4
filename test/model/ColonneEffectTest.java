@@ -1,6 +1,7 @@
 
 package model;
 
+import java.awt.Color;
 import static model.ChangeColorEffectTest.aGame;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,7 +29,7 @@ public class ColonneEffectTest {
     public void setUp() {
 
         // Création d'un jeu vide
-        aGame = new Game();
+        aGame = new Game(Color.RED,Color.YELLOW);
         Board b = new Board(10, 10);
         aGame.setBoard(b);
     }

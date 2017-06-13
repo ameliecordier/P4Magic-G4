@@ -39,6 +39,8 @@
  */
 package view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Avak Yeramian
@@ -47,6 +49,8 @@ public class GameSettings extends javax.swing.JFrame {
     public int width=10;
     public int height=10;
     public Boolean isFinish = false; 
+    public Color color1=Color.RED;
+    public Color color2=Color.YELLOW;
     /**
      * Creates new form GameWidthHeight
      */
@@ -65,8 +69,15 @@ public class GameSettings extends javax.swing.JFrame {
     
     public int getTheHeight() {
         return this.height;
-    }  
+    }
     
+    public Color getColor1() {
+        return this.color1;
+    }
+
+    public Color getColor2() {
+        return this.color2;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,12 +87,21 @@ public class GameSettings extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupJoueur1 = new javax.swing.ButtonGroup();
+        buttonGroupJoueur2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jSpinnerWidth = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jSpinnerHeight = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         jButtonOk = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jRadioButtonRouge1 = new javax.swing.JRadioButton();
+        jRadioButtonJaune1 = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jRadioButtonRouge2 = new javax.swing.JRadioButton();
+        jRadioButtonJaune2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +123,46 @@ public class GameSettings extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("[Couleurs des joueurs]");
+
+        jLabel5.setText("Joueur 1 :");
+
+        buttonGroupJoueur1.add(jRadioButtonRouge1);
+        jRadioButtonRouge1.setSelected(true);
+        jRadioButtonRouge1.setText("Rouge");
+        jRadioButtonRouge1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonRouge1ActionPerformed(evt);
+            }
+        });
+
+        buttonGroupJoueur1.add(jRadioButtonJaune1);
+        jRadioButtonJaune1.setText("Jaune");
+        jRadioButtonJaune1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonJaune1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Joueur 2 :");
+
+        buttonGroupJoueur2.add(jRadioButtonRouge2);
+        jRadioButtonRouge2.setText("Rouge");
+        jRadioButtonRouge2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonRouge2ActionPerformed(evt);
+            }
+        });
+
+        buttonGroupJoueur2.add(jRadioButtonJaune2);
+        jRadioButtonJaune2.setSelected(true);
+        jRadioButtonJaune2.setText("Jaune");
+        jRadioButtonJaune2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonJaune2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,16 +172,35 @@ public class GameSettings extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
+                        .addGap(47, 47, 47)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSpinnerWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSpinnerHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonOk))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonOk)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRadioButtonRouge2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRadioButtonRouge1)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButtonJaune1)
+                                    .addComponent(jRadioButtonJaune2))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +212,18 @@ public class GameSettings extends javax.swing.JFrame {
                     .addComponent(jSpinnerHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jRadioButtonRouge1)
+                    .addComponent(jRadioButtonJaune1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonRouge2)
+                    .addComponent(jRadioButtonJaune2)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                 .addComponent(jButtonOk)
                 .addContainerGap())
         );
@@ -142,12 +232,44 @@ public class GameSettings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+        if(jRadioButtonRouge1.isEnabled()){
+            this.color1=Color.RED;
+            this.color2=Color.YELLOW;
+        }
+        if(jRadioButtonJaune1.isEnabled()){
+            this.color1=Color.YELLOW;
+            this.color2=Color.RED;
+        }
         this.width=(int) jSpinnerWidth.getValue();
         this.height=(int) jSpinnerHeight.getValue();
         this.isFinish=true;
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButtonOkActionPerformed
+
+    private void jRadioButtonRouge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRouge1ActionPerformed
+        if(jRadioButtonRouge2.isEnabled()){
+            jRadioButtonJaune2.setSelected(true);
+        }
+    }//GEN-LAST:event_jRadioButtonRouge1ActionPerformed
+
+    private void jRadioButtonJaune1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonJaune1ActionPerformed
+        if(jRadioButtonJaune2.isEnabled()){
+            jRadioButtonRouge2.setSelected(true);
+        }
+    }//GEN-LAST:event_jRadioButtonJaune1ActionPerformed
+
+    private void jRadioButtonRouge2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRouge2ActionPerformed
+        if(jRadioButtonRouge1.isEnabled()){
+            jRadioButtonJaune1.setSelected(true);
+        }
+    }//GEN-LAST:event_jRadioButtonRouge2ActionPerformed
+
+    private void jRadioButtonJaune2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonJaune2ActionPerformed
+        if(jRadioButtonJaune1.isEnabled()){
+            jRadioButtonRouge1.setSelected(true);
+        }
+    }//GEN-LAST:event_jRadioButtonJaune2ActionPerformed
     
 
     
@@ -188,10 +310,19 @@ public class GameSettings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupJoueur1;
+    private javax.swing.ButtonGroup buttonGroupJoueur2;
     private javax.swing.JButton jButtonOk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JRadioButton jRadioButtonJaune1;
+    private javax.swing.JRadioButton jRadioButtonJaune2;
+    private javax.swing.JRadioButton jRadioButtonRouge1;
+    private javax.swing.JRadioButton jRadioButtonRouge2;
     private javax.swing.JSpinner jSpinnerHeight;
     private javax.swing.JSpinner jSpinnerWidth;
     // End of variables declaration//GEN-END:variables
