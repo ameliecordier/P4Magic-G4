@@ -8,7 +8,13 @@ import java.util.Random;
  */
 public class RandomPlayEffect extends Effect {
     
-     @Override
+    /**
+     *
+     * @param line
+     * @param column
+     * @param game
+     */
+    @Override
     public void playEffect(int line, int column, Game game) {
         int a = super.incremente( line, column, game);
         

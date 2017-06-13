@@ -20,6 +20,14 @@ import view.GameView;
  */
 public class Main {
 
+    /**
+     *
+     * @param args
+     * @throws IOException
+     * @throws NoSuchFieldException
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException
+     */
     public static void main(String args[]) throws IOException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));

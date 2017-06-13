@@ -40,6 +40,11 @@ public final class Game extends Observable {
 
     }
     
+    /**
+     *
+     * @param couleur1
+     * @param couleur2
+     */
     public Game(Color couleur1, Color couleur2) {
 
         this._winner = -1;
@@ -53,11 +58,18 @@ public final class Game extends Observable {
 
     }
     
-    
+    /**
+     *
+     * @param couleur
+     */
     public void setCouleurP1(Color couleur){
         this._player1.setColor(couleur);
     }
     
+    /**
+     *
+     * @param couleur
+     */
     public void setCouleurP2(Color couleur){
         this._player2.setColor(couleur);
     }
@@ -121,7 +133,11 @@ public final class Game extends Observable {
         }
     }
     
-        public void playMoveNoEffectNoChangeP(int column) {
+    /**
+     *
+     * @param column
+     */
+    public void playMoveNoEffectNoChangeP(int column) {
 
         int i;
 
@@ -359,6 +375,10 @@ public final class Game extends Observable {
         return this._currentPlayer;
     }
     
+    /**
+     *
+     * @param joueur
+     */
     public void setCurrentPlayer(Player joueur){
         this._currentPlayer = joueur;
     }

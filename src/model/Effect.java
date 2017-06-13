@@ -14,12 +14,30 @@ public abstract class Effect {
     int iterations = 0;
     
     //line and column are in the coordinates of the token that has just been played
+
+    /**
+     *
+     * @param line
+     * @param column
+     * @param game
+     */
     public abstract void playEffect(int line, int column, Game game);
 
+    /**
+     *
+     * @param nb
+     */
     public void SetNbIterations(int nb){
         iterationsMax =  nb +1;
     }
 
+    /**
+     *
+     * @param line
+     * @param column
+     * @param game
+     * @return
+     */
     public int incremente(int line, int column, Game game) {
         iterations++;
         if(iterations == iterationsMax){

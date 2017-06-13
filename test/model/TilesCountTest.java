@@ -51,6 +51,9 @@ public class TilesCountTest {
     public void tearDown() {
     }
     
+    /**
+     *
+     */
     @Test
     public void testCptUn() {
         Utils.simulateAGame(aGame);
@@ -60,6 +63,9 @@ public class TilesCountTest {
         assertEquals(7, aGame.getBoard().getTilesCountPlayer2());
     }
     
+    /**
+     *
+     */
     @Test
     public void testCptDeux() {
         Utils.simulateAnOddGame(aGame);
