@@ -11,7 +11,7 @@ package model;
 public class DisappearEffect extends Effect {
 
     /**
-     * TODO
+     * This effect makes the recently played pawn disappear
      * @param line
      * @param column
      * @param game
