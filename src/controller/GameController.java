@@ -53,13 +53,13 @@ public final class GameController {
      * @param view
      * @param game
      */
-    public GameController(GameView view, Game game) {
+    public GameController(GameView view, Game game,int width,int height) {
 
         //Initilalisation of the view
         this._view = view;
         this._game = game;
 
-        initSettingsController();
+        initSettingsController(width,height);
         initEndGameController();
 
     }
@@ -67,7 +67,7 @@ public final class GameController {
     /**
      * Settings initialisation
      */
-    public void initSettingsController() {
+    public void initSettingsController(int width,int height) {
 
         this._settingsClosingWindow = new WindowAdapter() {
 
@@ -83,7 +83,7 @@ public final class GameController {
         };
 
         this._settingsPlay = (ActionEvent e) -> {
-            startGame();
+            startGame(width,height);
         };
 
         this._view.getSettingsFrame().addWindowListener(_settingsClosingWindow);
@@ -270,10 +270,7 @@ public final class GameController {
     /**
      * Start a new game method
      */
-    private void startGame() {
-
-        int width = 10;
-        int height = 10;
+    private void startGame(int width,int height) {
 
         Board board = new Board(width, height);
         this._game.setBoard(board);

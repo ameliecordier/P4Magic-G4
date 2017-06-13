@@ -23,18 +23,22 @@ public final class Game extends Observable {
     private Player _currentPlayer;
     private int _winner;
     private boolean _over;
+    private Boolean[] effect;
 
     /**
      * Game constructor A game has two players... for now.
+     * @param color1
+     * @param color2
+     * @param effect
      */
-    public Game() {
-
+    public Game(Color color1,Color color2,Boolean[] effect) {
         this._winner = -1;
         this._over = false;
 
-        this._player1 = new HumanPlayer(1, Color.RED);
-        this._player2 = new HumanPlayer(2, Color.YELLOW);
+        this._player1 = new HumanPlayer(1,color1);                //Color.RED
+        this._player2 = new HumanPlayer(2,color2);                //Color.YELLOW
         this._currentPlayer = this._player1;
+        this.effect=effect;
 
         init();
 
@@ -244,7 +248,7 @@ public final class Game extends Observable {
                 int random = rand.nextInt(100 - 1 + 1) + 1;
 
                 if (random <= this._board.getTileEffectChance()) {
-                    this._board.getTileIJ(i, j).setEffect(createEffect());
+                    this._board.getTileIJ(i, j).setEffect(createEffect(effect));
                 }
 
             }

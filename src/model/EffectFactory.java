@@ -19,9 +19,9 @@ public class EffectFactory {
      *
      * @return an effect
      */
-    public static Effect createEffect() {
+    public static Effect createEffect(Boolean[] effect) {
         int min = 0;
-        int max = 0;
+        int max = 2;
         Random rand = new Random();
         //Tire un nombre aléatoire entre min et max compris
         int random = rand.nextInt(max - min + 1) + min;
@@ -29,9 +29,17 @@ public class EffectFactory {
         switch (random) {
 
             case 0:
-                return new ChangeColorEffect();
-            //case 1:
-            //    return new DisappearEffect();
+                if(effect[0]){
+                    return new ChangeColorEffect();
+                }
+            case 1:
+                if(effect[1]){
+                    return new DisappearEffect();
+                }
+            case 2:
+                if(effect[2]){
+                    return new ColonneEffect();
+                }
         }
 
         return null;

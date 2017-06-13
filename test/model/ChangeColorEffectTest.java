@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.awt.Color;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,6 +18,7 @@ import static org.junit.Assert.*;
  */
 public class ChangeColorEffectTest {
     
+    public Boolean[] effect={true,true,true};    
     static Game aGame;
     
     public ChangeColorEffectTest() {
@@ -35,7 +37,7 @@ public class ChangeColorEffectTest {
     public void setUp() {
 
         // Création d'un jeu vide
-        aGame = new Game();
+        aGame = new Game(Color.RED,Color.YELLOW,effect);
         Board b = new Board(10, 10);
         aGame.setBoard(b);
 

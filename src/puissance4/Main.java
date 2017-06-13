@@ -5,7 +5,9 @@
 package puissance4;
 
 import controller.GameController;
+import java.awt.Color;
 import model.Game;
+import view.GameSettings;
 import view.GameView;
 
 /**
@@ -15,11 +17,23 @@ import view.GameView;
  */
 public class Main {
 
-    public static void main(String args[]) {
-
-        Game game = new Game();
+    public static void main(String args[]) throws InterruptedException {
+        
+        GameSettings settings = new GameSettings();
+        Boolean f;
+        do{
+            f=settings.getIsFinish();
+            Thread.sleep(500);
+        }while(f==false);
+        int width = settings.getTheWidth();
+        int height = settings.getTheHeight();
+        Color color1 = settings.getColor1();
+        Color color2 = settings.getColor2();
+        Boolean effect[]={settings.getChangeColorEffect(),settings.getDisappearEffect(),settings.getColonneEffect()};
+        Game game = new Game(color1,color2,effect);
+        
         GameView board = new GameView();
-        GameController controller = new GameController(board, game);
+        GameController controller = new GameController(board, game,width,height);
         game.addObserver(board);
 
     }
