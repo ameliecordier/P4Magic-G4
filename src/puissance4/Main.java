@@ -29,7 +29,8 @@ public class Main {
         int height = settings.getTheHeight();
         Color color1 = settings.getColor1();
         Color color2 = settings.getColor2();
-        Game game = new Game(color1,color2);
+        Boolean effect[]={settings.getChangeColorEffect(),settings.getDisappearEffect(),settings.getColonneEffect()};
+        Game game = new Game(color1,color2,effect);
         
         GameView board = new GameView();
         GameController controller = new GameController(board, game,width,height);

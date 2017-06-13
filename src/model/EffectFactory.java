@@ -19,7 +19,7 @@ public class EffectFactory {
      *
      * @return an effect
      */
-    public static Effect createEffect() {
+    public static Effect createEffect(Boolean[] effect) {
         int min = 0;
         int max = 2;
         Random rand = new Random();
@@ -29,11 +29,17 @@ public class EffectFactory {
         switch (random) {
 
             case 0:
-                return new ChangeColorEffect();
+                if(effect[0]){
+                    return new ChangeColorEffect();
+                }
             case 1:
-                return new DisappearEffect();
+                if(effect[1]){
+                    return new DisappearEffect();
+                }
             case 2:
-                return new ColonneEffect();
+                if(effect[2]){
+                    return new ColonneEffect();
+                }
         }
 
         return null;

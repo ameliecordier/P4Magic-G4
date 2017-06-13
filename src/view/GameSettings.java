@@ -51,6 +51,9 @@ public class GameSettings extends javax.swing.JFrame {
     public Boolean isFinish = false; 
     public Color color1=Color.RED;
     public Color color2=Color.YELLOW;
+    public Boolean changeColorEffect = true;
+    public Boolean disappearEffect = true;
+    public Boolean colonneEffect = true;
     /**
      * Creates new form GameWidthHeight
      */
@@ -78,6 +81,18 @@ public class GameSettings extends javax.swing.JFrame {
     public Color getColor2() {
         return this.color2;
     }
+    
+    public Boolean getChangeColorEffect(){
+        return this.changeColorEffect;
+    }
+    
+    public Boolean getDisappearEffect(){
+        return this.disappearEffect;
+    }
+    
+    public Boolean getColonneEffect(){
+        return this.colonneEffect;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,6 +117,10 @@ public class GameSettings extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jRadioButtonRouge2 = new javax.swing.JRadioButton();
         jRadioButtonJaune2 = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
+        jRadioButtonChangeColorEffect = new javax.swing.JRadioButton();
+        jRadioButtonDisappearEffect = new javax.swing.JRadioButton();
+        jRadioButtonColonneEffect = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,6 +182,17 @@ public class GameSettings extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("[Liste des effets]");
+
+        jRadioButtonChangeColorEffect.setSelected(true);
+        jRadioButtonChangeColorEffect.setText("Change couleur");
+
+        jRadioButtonDisappearEffect.setSelected(true);
+        jRadioButtonDisappearEffect.setText("Disparition");
+
+        jRadioButtonColonneEffect.setSelected(true);
+        jRadioButtonColonneEffect.setText("Suppression colonne");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,19 +212,27 @@ public class GameSettings extends javax.swing.JFrame {
                         .addComponent(jSpinnerHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonOk)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButtonOk)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(45, 45, 45)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jRadioButtonChangeColorEffect)
+                                        .addComponent(jRadioButtonDisappearEffect)
+                                        .addComponent(jRadioButtonColonneEffect))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRadioButtonRouge1))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButtonRouge2))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButtonRouge1)))
+                                        .addComponent(jRadioButtonRouge2)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jRadioButtonJaune1)
@@ -223,7 +261,15 @@ public class GameSettings extends javax.swing.JFrame {
                     .addComponent(jRadioButtonRouge2)
                     .addComponent(jRadioButtonJaune2)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jRadioButtonChangeColorEffect))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButtonDisappearEffect)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButtonColonneEffect)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jButtonOk)
                 .addContainerGap())
         );
@@ -239,6 +285,21 @@ public class GameSettings extends javax.swing.JFrame {
         if(jRadioButtonJaune1.isEnabled()){
             this.color1=Color.YELLOW;
             this.color2=Color.RED;
+        }
+        if(jRadioButtonChangeColorEffect.isSelected()){
+            this.changeColorEffect=true;
+        }else{
+            this.changeColorEffect=false;
+        }
+        if(jRadioButtonDisappearEffect.isSelected()){
+            this.disappearEffect=true;
+        }else{
+            this.disappearEffect=false;
+        }
+        if(jRadioButtonColonneEffect.isSelected()){
+            this.colonneEffect=true;
+        }else{
+            this.colonneEffect=false;
         }
         this.width=(int) jSpinnerWidth.getValue();
         this.height=(int) jSpinnerHeight.getValue();
@@ -319,6 +380,10 @@ public class GameSettings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JRadioButton jRadioButtonChangeColorEffect;
+    private javax.swing.JRadioButton jRadioButtonColonneEffect;
+    private javax.swing.JRadioButton jRadioButtonDisappearEffect;
     private javax.swing.JRadioButton jRadioButtonJaune1;
     private javax.swing.JRadioButton jRadioButtonJaune2;
     private javax.swing.JRadioButton jRadioButtonRouge1;

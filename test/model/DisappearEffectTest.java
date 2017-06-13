@@ -25,6 +25,7 @@ import static org.junit.Assert.*;
 public class DisappearEffectTest {
 
     static Game aGame;
+    public Boolean[] effect={true,true,true};
 
     public DisappearEffectTest() {
     }
@@ -42,7 +43,7 @@ public class DisappearEffectTest {
     public void setUp() {
 
         // Création d'un jeu vide
-        aGame = new Game(Color.RED,Color.YELLOW);
+        aGame = new Game(Color.RED,Color.YELLOW,effect);
         Board b = new Board(10, 10);
         aGame.setBoard(b);
 

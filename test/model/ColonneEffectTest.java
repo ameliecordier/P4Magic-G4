@@ -12,7 +12,8 @@ import static org.junit.Assert.*;
 
 public class ColonneEffectTest {
     static Game aGame;
-    
+    public Boolean[] effect={true,true,true};
+            
     public ColonneEffectTest() {
     }
     
@@ -29,7 +30,7 @@ public class ColonneEffectTest {
     public void setUp() {
 
         // Création d'un jeu vide
-        aGame = new Game(Color.RED,Color.YELLOW);
+        aGame = new Game(Color.RED,Color.YELLOW,effect);
         Board b = new Board(10, 10);
         aGame.setBoard(b);
     }

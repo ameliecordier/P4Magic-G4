@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
  */
 public class ChangeColorEffectTest {
     
+    public Boolean[] effect={true,true,true};    
     static Game aGame;
     
     public ChangeColorEffectTest() {
@@ -36,7 +37,7 @@ public class ChangeColorEffectTest {
     public void setUp() {
 
         // Création d'un jeu vide
-        aGame = new Game(Color.RED,Color.YELLOW);
+        aGame = new Game(Color.RED,Color.YELLOW,effect);
         Board b = new Board(10, 10);
         aGame.setBoard(b);
 
