@@ -20,11 +20,6 @@ public class LineFallEffectTest {
     
     static Game aGame;
     
-    /**
-     *
-     */
-    public LineFallEffectTest() {
-    }
     
     /**
      *
@@ -62,7 +57,7 @@ public class LineFallEffectTest {
     }
 
     /**
-     *
+     * tests the linefall effect in a basic game's configuration
      */
     @Test
     public void testLineFallEffectTestNormalGame() {

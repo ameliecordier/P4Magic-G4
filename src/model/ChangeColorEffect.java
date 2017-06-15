@@ -21,7 +21,7 @@ public class ChangeColorEffect extends Effect {
     @Override
     public void playEffect(int line, int column, Game game) {
 
-        int a = super.incremente( line, column, game);
+        int a = super.incremente( line, column, game); // itération Limit
         
         if (a == 0){
             return;

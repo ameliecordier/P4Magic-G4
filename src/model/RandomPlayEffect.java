@@ -13,10 +13,13 @@ public class RandomPlayEffect extends Effect {
      * @param line
      * @param column
      * @param game
+     * 
+     * Effect that plays a token randomly
      */
     @Override
     public void playEffect(int line, int column, Game game) {
-        int a = super.incremente( line, column, game);
+        
+        int a = super.incremente( line, column, game); //itération Limit
         
             if (a == 0){
                 return;

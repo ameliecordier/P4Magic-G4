@@ -11,11 +11,13 @@ public class LineFallEffect extends Effect {
      * @param line
      * @param column
      * @param game
+     * 
+     * effect that simply makesa whole line fall instead of one token
      */
     @Override
     public void playEffect(int line, int column, Game game) {
         
-        int a = super.incremente( line, column, game);
+        int a = super.incremente( line, column, game); //iteration Limit
         
         if (a == 0){
             return;

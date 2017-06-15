@@ -19,11 +19,6 @@ public class ChangeColorEffectTest {
     
     static Game aGame;
     
-    /**
-     *
-     */
-    public ChangeColorEffectTest() {
-    }
     
     /**
      *

@@ -52,7 +52,7 @@ public class TilesCountTest {
     }
     
     /**
-     *
+     * tests counts on a basic game
      */
     @Test
     public void testCptUn() {
@@ -64,7 +64,7 @@ public class TilesCountTest {
     }
     
     /**
-     *
+     * tests counts on an odd game
      */
     @Test
     public void testCptDeux() {
