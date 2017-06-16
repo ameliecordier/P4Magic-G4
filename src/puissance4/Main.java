@@ -21,6 +21,10 @@ import view.GameView;
  */
 public class Main {
 
+    /**
+     * Launches P4Magic
+     * @param args command line arguments
+     */
     public static void main(String args[]) {
         
         //Taille de la grille

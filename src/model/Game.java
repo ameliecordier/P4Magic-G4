@@ -45,6 +45,7 @@ public final class Game extends Observable {
      * Game constructor with player color selection and debug on/off
      * @param colorP1 the player 1 color
      * @param colorP2 the player 2 color
+     * @param debug
      */
     public Game(Color colorP1, Color colorP2, boolean debug){
         

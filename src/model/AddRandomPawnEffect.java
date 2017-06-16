@@ -33,7 +33,6 @@ public class AddRandomPawnEffect extends Effect {
             randomCol = rand.nextInt(nbCol - min + 1) + min;
             colFull = (game.getBoard().getTileIJ(0, randomCol).getStatus() != -1);
         }
-        //game.playMove(randomCol);
         int i = 0;
         while (i < game.getBoard().getHeight()) {
             if (game.getBoard().getTileIJ(i, randomCol).getStatus() != -1) {
