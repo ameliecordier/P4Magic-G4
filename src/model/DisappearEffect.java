@@ -16,9 +16,13 @@ public class DisappearEffect extends Effect {
      * @param column
      * @param game
      */
+    
     @Override
     public void playEffect(int line, int column, Game game) {
-        game.getBoard().getTileIJ(line,column).setStatus(-1);
+        game.getBoard().getTileIJ(line,column).setStatus(-1);           //permet de ne pas afficher le pion sur la grille
+        //game.getBoard().getTileIJ(line,column).setEffect(null);
     }
+    
+  
 
 }
