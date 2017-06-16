@@ -12,6 +12,11 @@ import java.awt.Color;
  */
 public class HumanPlayer extends Player {
 
+    /**
+     *
+     * @param id the ID of the player
+     * @param color the color of the player
+     */
     public HumanPlayer(int id, Color color) {
         super(id, color);
     }
