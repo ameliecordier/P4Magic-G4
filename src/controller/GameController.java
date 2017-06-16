@@ -83,7 +83,7 @@ public final class GameController {
         };
 
         this._settingsPlay = (ActionEvent e) -> {
-            startGame();
+            startGame(_game.getChoiceWidth(),_game.getChoiceHeight());
         };
 
         this._view.getSettingsFrame().addWindowListener(_settingsClosingWindow);
@@ -270,10 +270,9 @@ public final class GameController {
     /**
      * Start a new game method
      */
-    private void startGame() {
+    private void startGame(int width, int height) {
 
-        int width = 10;
-        int height = 10;
+        
 
         Board board = new Board(width, height);
         this._game.setBoard(board);

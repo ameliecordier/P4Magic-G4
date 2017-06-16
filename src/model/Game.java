@@ -23,6 +23,10 @@ public final class Game extends Observable {
     private Player _currentPlayer;
     private int _winner;
     private boolean _over;
+    private boolean _debugMode; //true si le jeu est en mode Debug, false sinon
+    
+    private int _choiceWidth; //largeur de la grille pouvant être modifée par le joueur;
+    private int _choiceHeight; //hauteur de la grille pouvant être modifée par le joueur;
 
     /**
      * Game constructor A game has two players... for now.
@@ -31,15 +35,23 @@ public final class Game extends Observable {
 
         this._winner = -1;
         this._over = false;
-
+        
         this._player1 = new HumanPlayer(1, Color.RED);
         this._player2 = new HumanPlayer(2, Color.YELLOW);
+        
         this._currentPlayer = this._player1;
-
+        //On imagine que la case de séléction du mode débug est décochée par défaut et que la taille présélectionnée est 10*10 tiles.
+        this._debugMode=false;
+        this._choiceWidth=10;
+        this._choiceHeight=10;
+        
+        
         init();
 
     }
 
+    
+    
     /**
      * Game initialiser
      */
@@ -47,6 +59,85 @@ public final class Game extends Observable {
 
         resetPosPreview();
 
+    }
+    
+    /**
+     * Méthode permettant de changer la valeur du boolean debugMode
+     * Cette méthode doit être appelée lorsque le joueur coche ou décoche la case de séléction du mode débug.
+     */
+    public void changeDebugMode() {
+        if (_debugMode){
+            _debugMode = false;
+        } else {
+            _debugMode = true;
+        }
+    }
+    
+    /**
+     * Cette méthode doit être appelée lorsque le joueur modifie la largeur de grille
+     * @param w largeur de la grille choisie par le joueur
+     */
+    public void setChoiceWidth(int w){
+        _choiceWidth = w;
+    }
+    
+    /**
+     * Cette méthode doit être appelée lorsque le joueur modifie la hauteur de grille
+     * @param h hauteur de la grille choisie par le joueur
+     */
+    public void setChoiceHeight(int h){
+        _choiceHeight = h;
+    }
+    
+    /**
+     * Renvoie la hauteur de la grille choisie par le joueur
+     * @return _choiceHeight
+     */
+    public int getChoiceHeight(){
+        return(_choiceHeight);
+    }
+    
+    /**
+     * Renvoie la largeur de la grille choisie par le joueur
+     * @return _choiceWidth
+     */
+    public int getChoiceWidth(){
+        return(_choiceWidth);
+    }
+    
+    
+    /**
+     * Renvoi true si le jeu est en mode debug, false sinon
+     * 
+     * @return 
+     */
+    public boolean getDebugMode(){
+        return _debugMode;
+    }
+    
+    
+    /**
+     * Changes the color of P1 to the new color stated
+     * (If P1 and P2 arent already of that color)
+     * 
+     * @param c new color for P1
+     */
+    public void changeColorP1(Color c){
+        if (c != _player1.getColor() && c != _player2.getColor()){
+            _player1.setColor(c);
+        }
+    }
+    
+    /**
+     * Changes the color of P2 to the new color stated
+     * (If P1 and P2 arent already of that color)
+     * 
+     * @param c new color for P2
+     */
+    public void changeColorP2(Color c){
+        if (c != _player1.getColor() && c != _player2.getColor()){
+            _player2.setColor(c);
+        }
     }
 
     /**
@@ -97,7 +188,49 @@ public final class Game extends Observable {
             setChanged();
             notifyObservers();
         }
+        
     }
+    
+    /**
+     * Méthode jouant un coup sans changer de joueur
+     * ni jouer d'effet s'il y en a
+     * (utile pour les effets qui rajoutent des pions suplémentaires)
+     * 
+     * @param column 
+     */
+    public void playMoveNoChange(int column) {
+        
+        int i;
+
+        if (this._board.getTileIJ(0, column).getStatus() == -1) {
+            
+            for (i = 0; i < this._board.getHeight(); ++i) {
+
+                if (this._board.getTileIJ(i, column).getStatus() != -1) {
+                    break;
+                }
+
+            }
+
+            if (i > 0) {
+
+                i--;
+                this._board.getTileIJ(i, column).setStatus(this._currentPlayer.getId());
+
+            }
+
+            Player tmp = Win();
+            if (tmp != null) {
+                this._winner = tmp.getId();
+            }
+
+            isOver();
+
+            setChanged();
+            notifyObservers();
+        }
+    }
+    
 
     /**
      * Make sure the player can play in the column

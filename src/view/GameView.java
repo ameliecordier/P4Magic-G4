@@ -35,12 +35,19 @@ public final class GameView extends JFrame implements Observer {
 
     //Game Frame (Main Frame)
     private JPanel _gameWindow;
+    /**
+     * JPanel for the gamePreview
+     */
     public static JPanel _gamePreview;
+    /**
+     * JPanel for the gameRowGrid
+     */
     public static JPanel _gameRowsGrid;
     private int _gameWindowHeight = 800;
     private int _gameWindowWidth = 600;
     private int _gameBorderSize = (_gameWindowWidth * 1) / 100;
     private static Border _gameBlueLine;
+    private static Border _gameBlackLine;
 
     //End Game Frame
     private JFrame _endGameFrame;
@@ -116,6 +123,7 @@ public final class GameView extends JFrame implements Observer {
         _gamePreview = new JPanel(new GridLayout(1, 0));
 
         _gameBlueLine = BorderFactory.createLineBorder(Color.BLUE, _gameBorderSize);
+        _gameBlackLine = BorderFactory.createLineBorder(Color.BLACK, _gameBorderSize);
 
         GridBagConstraints cWindow = new GridBagConstraints();
 
@@ -209,18 +217,25 @@ public final class GameView extends JFrame implements Observer {
                         panelTmp.getComponent(j).setBackground(Color.WHITE);
 
                     }
-                    if (game.getBoard().getTileIJ(j, i).getEffect() != null) {
-
+                    if ( !game.getDebugMode()){
                         JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);
                         JLabel tmps = (JLabel) panelTmp.getComponent(j);
-                        tmps.setBorder(BorderFactory.createLineBorder(Color.GREEN, _gameBorderSize));
+                        tmps.setBorder(_gameBlackLine);
+                    } else  {
+                    
+                        if (game.getBoard().getTileIJ(j, i).getEffect() != null) {
 
-                    } else {
+                            JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);
+                            JLabel tmps = (JLabel) panelTmp.getComponent(j);
+                            tmps.setBorder(BorderFactory.createLineBorder(Color.GREEN, _gameBorderSize));
 
-                        JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);
-                        JLabel tmps = (JLabel) panelTmp.getComponent(j);
-                        tmps.setBorder(_gameBlueLine);
+                        } else {
 
+                            JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);
+                            JLabel tmps = (JLabel) panelTmp.getComponent(j);
+                            tmps.setBorder(_gameBlueLine);
+
+                        }
                     }
 
                 }
@@ -364,54 +379,119 @@ public final class GameView extends JFrame implements Observer {
 
     }
 
+    /**
+     * Setter of the width
+     * 
+     * @param width 
+     */
     public void setWidth(int width) {
         _width = width;
     }
 
+    /**
+     * Setter of the height
+     * 
+     * @param height 
+     */
     public void setHeight(int height) {
         _height = height;
     }
 
+    /**
+     * Accessor of the endGameFrame
+     * 
+     * @return 
+     */
     public JFrame getEndGameFrame() {
         return this._endGameFrame;
     }
 
+    /**
+     * Accessor of the enfGameQuit
+     * 
+     * @return 
+     */
     public JButton getEndGameQuit() {
         return this._endGameQuit;
     }
 
+    /**
+     * Accessor of the endGamePlay
+     * 
+     * @return 
+     */
     public JButton getEndGamePlay() {
         return this._endGamePlay;
     }
 
+    /**
+     * Accessor of the settingFrame
+     * 
+     * @return 
+     */
     public JFrame getSettingsFrame() {
         return this._settingsFrame;
     }
 
+    /**
+     * Accessor of the settingQuitButton
+     * 
+     * @return 
+     */
     public JButton getSettingsQuitButton() {
         return this._settingsQuit;
     }
 
+    /**
+     * Accessor of the settingPlayButton
+     * 
+     * @return 
+     */
     public JButton getSettingsPlayButton() {
         return this._settingsPlay;
     }
 
+    /**
+     * Accessor of the settingTileSlider
+     * 
+     * @return 
+     */
     public JSlider getSettingsTileSlider() {
         return this._settingsSliderEffectChance;
     }
 
+    /**
+     * Accessor of the gameWindow
+     * 
+     * @return 
+     */
     public JPanel getGameWindow() {
         return _gameWindow;
     }
 
+    /**
+     * Accessor of the gamePreview
+     * 
+     * @return 
+     */
     public JPanel getGamePreview() {
         return _gamePreview;
     }
 
+    /**
+     * Accessor of the gameRowGrid
+     * 
+     * @return 
+     */
     public JPanel getGameRowsGrid() {
         return _gameRowsGrid;
     }
 
+    /**
+     * Accessor of the mainFrame
+     * 
+     * @return 
+     */
     public JFrame getMainFrame() {
         return this;
     }
