@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GameController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;P4Magic&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">GameController.java</span></div><h1>GameController.java</h1><pre class="source lang-java linenums">/**
+ * MagicP4
+ * IUT Lyon 1 - 2016
+ */
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JPanel;
+import model.Board;
+import model.Game;
+import model.HumanPlayer;
+import view.GameView;
+
+/**
+ * GameController
+ *
+ * @author hakkahi and Amélie Cordier, IUT Lyon 1 - 2016
+ *
+ */
+public final class GameController {
+
+    private final GameView _view;
+    private final Game _game;
+
+    //Settings Listener
+    private WindowAdapter _settingsClosingWindow;
+    private ActionListener _settingsQuit;
+    private ActionListener _settingsPlay;
+
+    //Game Listener
+    private MouseAdapter[][] _gameSelectColumnGrid;
+    private MouseAdapter[][] _gameClickColumnGrid;
+    private MouseAdapter[] _gameSelectColumnPreview;
+    private MouseAdapter[] _gameClickColumnPreview;
+    private WindowAdapter _gameClosingWindow;
+    private ComponentAdapter _gameResizingWindow;
+
+    //End Game Listener
+    private ActionListener _endGamePlay;
+    private ActionListener _endGameQuit;
+    private WindowAdapter _endGameClosingWindow;
+
+    /**
+     * GameController constructor
+     *
+     * @param view
+     * @param game
+     */
+<span class="nc" id="L56">    public GameController(GameView view, Game game) {</span>
+
+        //Initilalisation of the view
+<span class="nc" id="L59">        this._view = view;</span>
+<span class="nc" id="L60">        this._game = game;</span>
+
+<span class="nc" id="L62">        initSettingsController();</span>
+<span class="nc" id="L63">        initEndGameController();</span>
+
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * Settings initialisation
+     */
+    public void initSettingsController() {
+
+<span class="nc" id="L72">        this._settingsClosingWindow = new WindowAdapter() {</span>
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+<span class="nc" id="L76">                quit();</span>
+<span class="nc" id="L77">            }</span>
+
+        };
+
+<span class="nc" id="L81">        this._settingsQuit = (ActionEvent e) -&gt; {</span>
+<span class="nc" id="L82">            quit();</span>
+<span class="nc" id="L83">        };</span>
+
+<span class="nc" id="L85">        this._settingsPlay = (ActionEvent e) -&gt; {</span>
+<span class="nc" id="L86">            startGame();</span>
+<span class="nc" id="L87">        };</span>
+
+<span class="nc" id="L89">        this._view.getSettingsFrame().addWindowListener(_settingsClosingWindow);</span>
+<span class="nc" id="L90">        this._view.getSettingsQuitButton().addActionListener(_settingsQuit);</span>
+<span class="nc" id="L91">        this._view.getSettingsPlayButton().addActionListener(_settingsPlay);</span>
+
+<span class="nc" id="L93">    }</span>
+
+    /**
+     * Game initialisation
+     */
+    public void initGameController() {
+
+        //Init of the event matrix for the Grid part
+<span class="nc" id="L101">        this._gameSelectColumnGrid = new MouseAdapter[this._game.getBoard().getHeight()][this._game.getBoard().getWidth()];</span>
+<span class="nc" id="L102">        this._gameClickColumnGrid = new MouseAdapter[this._game.getBoard().getHeight()][this._game.getBoard().getWidth()];</span>
+
+        //Init of the event matrix for the Previw part
+<span class="nc" id="L105">        this._gameSelectColumnPreview = new MouseAdapter[this._game.getBoard().getWidth()];</span>
+<span class="nc" id="L106">        this._gameClickColumnPreview = new MouseAdapter[this._game.getBoard().getWidth()];</span>
+
+        //Creation of the event that exit the game when clicking on the window cross
+<span class="nc" id="L109">        this._gameClosingWindow = new WindowAdapter() {</span>
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+<span class="nc" id="L113">                quit();</span>
+<span class="nc" id="L114">            }</span>
+
+        };
+
+<span class="nc" id="L118">        this._gameResizingWindow = new ComponentAdapter() {</span>
+
+            @Override
+            public void componentResized(ComponentEvent e) {
+
+<span class="nc" id="L123">                _view.setBorderSize();</span>
+
+<span class="nc" id="L125">            }</span>
+
+        };
+
+        //Mouse events in the Grid
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        for (int i = 0; i &lt; this._game.getBoard().getHeight(); ++i) {</span>
+
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            for (int j = 0; j &lt; this._game.getBoard().getWidth(); ++j) {</span>
+
+<span class="nc" id="L134">                final int column = j;</span>
+<span class="nc" id="L135">                final int line = i;</span>
+
+<span class="nc" id="L137">                this._gameSelectColumnGrid[i][j] = new MouseAdapter() {</span>
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+<span class="nc" id="L142">                        _game.resetPosPreview();</span>
+<span class="nc" id="L143">                        _game.setPosPreview(column);</span>
+
+<span class="nc" id="L145">                    }</span>
+                };
+
+<span class="nc" id="L148">                this._gameClickColumnGrid[i][j] = new MouseAdapter() {</span>
+
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+
+<span class="nc bnc" id="L153" title="All 2 branches missed.">                        if (_game.getCurrentPlayer() instanceof HumanPlayer) {</span>
+
+<span class="nc bnc" id="L155" title="All 2 branches missed.">                            if (_game.strokeIsValid(column)) {</span>
+<span class="nc" id="L156">                                _game.playMove(column);</span>
+
+                            }
+                        }
+
+<span class="nc" id="L161">                    }</span>
+                };
+
+            }
+
+        }
+
+        //Mouse events int the preview
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        for (int i = 0; i &lt; this._game.getBoard().getWidth(); ++i) {</span>
+
+<span class="nc" id="L171">            final int column = i;</span>
+
+<span class="nc" id="L173">            this._gameSelectColumnPreview[i] = new MouseAdapter() {</span>
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+<span class="nc" id="L178">                    _game.resetPosPreview();</span>
+<span class="nc" id="L179">                    _game.setPosPreview(column);</span>
+
+<span class="nc" id="L181">                }</span>
+            };
+
+<span class="nc" id="L184">            this._gameClickColumnPreview[i] = new MouseAdapter() {</span>
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+<span class="nc bnc" id="L189" title="All 2 branches missed.">                    if (_game.getCurrentPlayer() instanceof HumanPlayer) {</span>
+<span class="nc" id="L190">                        _game.playMove(column);</span>
+                    }
+<span class="nc" id="L192">                }</span>
+            };
+
+        }
+
+        //Add events to elements in the view
+<span class="nc" id="L198">        this._view.getMainFrame().addWindowListener(_gameClosingWindow);</span>
+
+<span class="nc" id="L200">        this._view.getMainFrame().addComponentListener(_gameResizingWindow);</span>
+
+<span class="nc bnc" id="L202" title="All 2 branches missed.">        for (int i = 0; i &lt; this._game.getBoard().getWidth(); ++i) {</span>
+
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            for (int j = 0; j &lt; this._game.getBoard().getHeight(); ++j) {</span>
+
+<span class="nc" id="L206">                JPanel tmp = (JPanel) this._view.getGameRowsGrid().getComponent(i);</span>
+<span class="nc" id="L207">                tmp.getComponent(j).addMouseListener(this._gameSelectColumnGrid[j][i]);</span>
+<span class="nc" id="L208">                tmp.getComponent(j).addMouseListener(this._gameClickColumnGrid[j][i]);</span>
+
+            }
+
+        }
+
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        for (int i = 0; i &lt; this._game.getBoard().getWidth(); ++i) {</span>
+
+<span class="nc" id="L216">            this._view.getGamePreview().getComponent(i).addMouseListener(this._gameSelectColumnPreview[i]);</span>
+<span class="nc" id="L217">            this._view.getGamePreview().getComponent(i).addMouseListener(this._gameClickColumnPreview[i]);</span>
+
+        }
+
+<span class="nc" id="L221">    }</span>
+
+    /**
+     * EndGame controller
+     */
+    public void initEndGameController() {
+
+<span class="nc" id="L228">        this._endGameClosingWindow = new WindowAdapter() {</span>
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+<span class="nc" id="L232">                quit();</span>
+<span class="nc" id="L233">            }</span>
+
+        };
+
+<span class="nc" id="L237">        this._endGamePlay = (ActionEvent e) -&gt; {</span>
+<span class="nc" id="L238">            playAgain();</span>
+<span class="nc" id="L239">        };</span>
+<span class="nc" id="L240">        this._endGameQuit = (ActionEvent e) -&gt; {</span>
+<span class="nc" id="L241">            quit();</span>
+<span class="nc" id="L242">        };</span>
+
+<span class="nc" id="L244">        this._view.getEndGameQuit().addActionListener(_endGameQuit);</span>
+<span class="nc" id="L245">        this._view.getEndGamePlay().addActionListener(_endGamePlay);</span>
+<span class="nc" id="L246">        this._view.getEndGameFrame().addWindowListener(_gameClosingWindow);</span>
+
+<span class="nc" id="L248">    }</span>
+
+    /**
+     * Exit method
+     */
+    private void quit() {
+<span class="nc" id="L254">        System.exit(0);</span>
+<span class="nc" id="L255">    }</span>
+
+    /**
+     * Replay method
+     */
+    private void playAgain() {
+
+<span class="nc" id="L262">        this._view.getEndGameFrame().setVisible(false);</span>
+<span class="nc" id="L263">        this._view.getMainFrame().setVisible(false);</span>
+<span class="nc" id="L264">        this._view.getSettingsFrame().setVisible(true);</span>
+<span class="nc" id="L265">        this._game.resetGame();</span>
+<span class="nc" id="L266">        this._view.resetView();</span>
+
+<span class="nc" id="L268">    }</span>
+
+    /**
+     * Start a new game method
+     */
+    private void startGame() {
+
+<span class="nc" id="L275">        int width = 10;</span>
+<span class="nc" id="L276">        int height = 10;</span>
+
+<span class="nc" id="L278">        Board board = new Board(width, height);</span>
+<span class="nc" id="L279">        this._game.setBoard(board);</span>
+<span class="nc" id="L280">        this._game.getBoard().setEffectChances(this._view.getSettingsTileSlider().getValue());</span>
+
+<span class="nc" id="L282">        this._game.setTilesEffect();</span>
+
+<span class="nc" id="L284">        this._view.setWidth(width);</span>
+<span class="nc" id="L285">        this._view.setHeight(height);</span>
+<span class="nc" id="L286">        GameView.fillGrids();</span>
+
+<span class="nc" id="L288">        initGameController();</span>
+
+<span class="nc" id="L290">        this._view.getSettingsFrame().setVisible(false);</span>
+
+<span class="nc" id="L292">        this._view.setVisible(true);</span>
+
+<span class="nc" id="L294">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
