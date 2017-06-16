@@ -15,6 +15,11 @@ import view.GameView;
  */
 public class Main {
 
+    /**
+     * Start the application
+     * 
+     * @param args 
+     */
     public static void main(String args[]) {
 
         Game game = new Game();
