@@ -13,19 +13,20 @@ import org.junit.Test;
  * @author p1517700
  */
 public class TileInAllColumnEffectTest {
+
     static Game aGame;
-    
+
     public TileInAllColumnEffectTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         // Création d'un jeu vide
@@ -33,12 +34,12 @@ public class TileInAllColumnEffectTest {
         Board b = new Board(10, 10);
         aGame.setBoard(b);
     }
-    
+
     @After
     public void tearDown() {
     }
 
-   /**
+    /**
      * Test du bon fonctionnement du jeu, en dehors de l'effet Résultats
      * attendus après le coup : - un pion de plus sur le plateau - le tour de
      * jeu est passé - l'effet a bien été appliqué
@@ -74,13 +75,11 @@ public class TileInAllColumnEffectTest {
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
         assertEquals(nb_tokens_before + 1, nb_tokens_after);
     }
-    
+
     /**
-     * Test de TileInAllColumnEffect sur grille vide 
-     * Vérification de l'état de la
-     * tuile après application de l'effet 
-     * Résultats attendus : il doit y avoir 10
-     * jetons de plus, le tour de jeu doit être passé
+     * Test de TileInAllColumnEffect sur grille vide Vérification de l'état de
+     * la tuile après application de l'effet Résultats attendus : il doit y
+     * avoir 10 jetons de plus, le tour de jeu doit être passé
      */
     @Test
     public void testTileInAllColumnEffectEmptyGame() {
@@ -91,14 +90,13 @@ public class TileInAllColumnEffectTest {
 
         // Récupération de l'ID du joueur courant 
         int id_player = aGame.getCurrentPlayer().getId();
-        
+
         // Récupération du nombre de pions présents 
         int nb_tokens_before = aGame.getBoard().getTotalTilesCount();
 
-
         // Coup joué sur la case de l'effet 
         aGame.playMove(0);
-        
+
         // Récupération du nombre de pions après le coup 
         int nb_tokens_after = aGame.getBoard().getTotalTilesCount();
 
@@ -111,12 +109,10 @@ public class TileInAllColumnEffectTest {
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
 
     }
-    
+
     /**
-     * Test de TileInAllColumnEffect sur grille vide 
-     * Vérification du nombre de jetons
-     * après jeu 
-     * Résultat attendu : le nombre doit être égal à 10
+     * Test de TileInAllColumnEffect sur grille vide Vérification du nombre de
+     * jetons après jeu Résultat attendu : le nombre doit être égal à 10
      */
     @Test
     public void testTileInAllColumnEffectEmptyGameWithTilesNumber() {
@@ -132,14 +128,12 @@ public class TileInAllColumnEffectTest {
         assertEquals(10, aGame.getBoard().getTotalTilesCount());
 
     }
-    
+
     /**
-     * Test de TileInAllColumnEffect sur grille pré-remplie 
-     * Vérification de l'état de
-     * la tuile après application de l'effet 
-     * Résultat attendu : il doit y avoir 10
-     * jetons de plus, l'effet doit être sur la case 
-     * et le tour doit être passé
+     * Test de TileInAllColumnEffect sur grille pré-remplie Vérification de
+     * l'état de la tuile après application de l'effet Résultat attendu : il
+     * doit y avoir 10 jetons de plus, l'effet doit être sur la case et le tour
+     * doit être passé
      */
     @Test
     public void testDisappearEffectFilledGame() {
@@ -173,5 +167,5 @@ public class TileInAllColumnEffectTest {
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
 
     }
-    
+
 }

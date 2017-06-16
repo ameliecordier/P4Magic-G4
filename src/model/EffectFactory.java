@@ -41,5 +41,5 @@ public class EffectFactory {
         return null;
 
     }
-    
+
 }

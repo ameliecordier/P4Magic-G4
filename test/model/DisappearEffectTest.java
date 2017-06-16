@@ -1,9 +1,8 @@
 package model;
-/**
- * MagicP4
- * IUT Lyon 1 - 2016
- */
 
+/**
+ * MagicP4 IUT Lyon 1 - 2016
+ */
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,8 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Classe de tests de l'effet Disappear 
- * Principe de l'effet : un pion joué sur
+ * Classe de tests de l'effet Disappear Principe de l'effet : un pion joué sur
  * une case portant l'effet Disappear disparaît immédiatement. Conséquences :
  * l'état du jeu n'est pas modifié, le pion joué n'apparaît pas sur la grille,
  * et le tour de jeu change
@@ -89,10 +87,8 @@ public class DisappearEffectTest {
     }
 
     /**
-     * Test de DisappearEffect sur grille vide 
-     * Vérification de l'état de la
-     * tuile après application de l'effet 
-     * Résultats attendus : la case doit être
+     * Test de DisappearEffect sur grille vide Vérification de l'état de la
+     * tuile après application de l'effet Résultats attendus : la case doit être
      * vide, le tour de jeu doit être passé
      */
     @Test
@@ -119,10 +115,8 @@ public class DisappearEffectTest {
     }
 
     /**
-     * Test de DisappearEffect sur grille vide 
-     * Vérification du nombre de jetons
-     * après jeu 
-     * Résultat attendu : le nombre doit être égal à 0
+     * Test de DisappearEffect sur grille vide Vérification du nombre de jetons
+     * après jeu Résultat attendu : le nombre doit être égal à 0
      */
     @Test
     public void testDisappearEffectEmptyGameWithTilesNumber() {
@@ -140,12 +134,9 @@ public class DisappearEffectTest {
     }
 
     /**
-     * Test de DisappearEffect sur grille pré-remplie 
-     * Vérification de l'état de
-     * la tuile après application de l'effet 
-     * Résultat attendu : la case doit
-     * être vide, l'effet doit être sur la case 
-     * et le tour doit être passé
+     * Test de DisappearEffect sur grille pré-remplie Vérification de l'état de
+     * la tuile après application de l'effet Résultat attendu : la case doit
+     * être vide, l'effet doit être sur la case et le tour doit être passé
      */
     @Test
     public void testDisappearEffectFilledGame() {
