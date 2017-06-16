@@ -21,18 +21,24 @@ public class EffectFactory {
      */
     public static Effect createEffect() {
         int min = 0;
-        int max = 0;
+        int max = 4;
         Random rand = new Random();
         //Tire un nombre aléatoire entre min et max compris
         int random = rand.nextInt(max - min + 1) + min;
-
         switch (random) {
 
             case 0:
                 return new ChangeColorEffect();
-            //case 1:
-            //    return new DisappearEffect();
+            case 1:
+                return new DisappearEffect();
+            case 2:
+                return new AddPionCurrentColorEffect();
+            case 3:
+                return new AppearPionEffect();
+            case 4:
+                return new DeleteColumnEffect();
         }
+          
 
         return null;
 

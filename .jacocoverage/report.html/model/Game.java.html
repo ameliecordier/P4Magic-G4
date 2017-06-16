@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;P4Magic&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">/**
+ * MagicP4
+ * IUT Lyon 1 - 2016
+ */
+package model;
+
+import java.awt.Color;
+import java.util.Observable;
+import java.util.Random;
+import static model.EffectFactory.createEffect;
+
+/**
+ *
+ * @author hakkahi - IUT Lyon 1 - 2016
+ *
+ */
+public final class Game extends Observable {
+
+    private int _posPreview;
+    private Board _board;
+    private final Player _player1;
+    private final Player _player2;
+    private Player _currentPlayer;
+    private int _winner;
+    private boolean _over;
+
+    /**
+     * Game constructor A game has two players... for now.
+     */
+<span class="fc" id="L30">    public Game() {</span>
+
+<span class="fc" id="L32">        this._winner = -1;</span>
+<span class="fc" id="L33">        this._over = false;</span>
+
+<span class="fc" id="L35">        this._player1 = new HumanPlayer(1, Color.RED);</span>
+<span class="fc" id="L36">        this._player2 = new HumanPlayer(2, Color.YELLOW);</span>
+<span class="fc" id="L37">        this._currentPlayer = this._player1;</span>
+
+<span class="fc" id="L39">        init();</span>
+
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Game initialiser
+     */
+    public void init() {
+
+<span class="fc" id="L48">        resetPosPreview();</span>
+
+<span class="fc" id="L50">    }</span>
+
+    /**
+     * Play move: given the id of a column, the token of the current player is
+     * played in this column. The token falls in the column until it cannot fall
+     * anymore
+     *
+     * @param column
+     */
+    public void playMove(int column) {
+
+        int i;
+
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        if (this._board.getTileIJ(0, column).getStatus() == -1) {</span>
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            for (i = 0; i &lt; this._board.getHeight(); ++i) {</span>
+
+<span class="fc bfc" id="L67" title="All 2 branches covered.">                if (this._board.getTileIJ(i, column).getStatus() != -1) {</span>
+<span class="fc" id="L68">                    break;</span>
+                }
+
+            }
+
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">            if (i &gt; 0) {</span>
+
+<span class="fc" id="L75">                i--;</span>
+<span class="fc" id="L76">                this._board.getTileIJ(i, column).setStatus(this._currentPlayer.getId());</span>
+
+            }
+
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            if (this._board.getTileIJ(i, column).getEffect() != null) {</span>
+<span class="fc" id="L81">                this._board.getTileIJ(i, column).getEffect().playEffect(i, column, this);</span>
+            }
+
+<span class="fc" id="L84">            Player tmp = Win();</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            if (tmp != null) {</span>
+<span class="fc" id="L86">                this._winner = tmp.getId();</span>
+            }
+
+<span class="fc" id="L89">            isOver();</span>
+
+<span class="fc bfc" id="L91" title="All 2 branches covered.">            if (this._currentPlayer.getId() == this._player1.getId()) {</span>
+<span class="fc" id="L92">                _currentPlayer = _player2;</span>
+            } else {
+<span class="fc" id="L94">                _currentPlayer = _player1;</span>
+            }
+
+<span class="fc" id="L97">            setChanged();</span>
+<span class="fc" id="L98">            notifyObservers();</span>
+        }
+<span class="fc" id="L100">    }</span>
+
+    /**
+     * Make sure the player can play in the column
+     *
+     * @param column
+     * @return a boolean indicating if the player can play or not
+     */
+    public boolean strokeIsValid(int column) {
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        return this._board.getTileIJ(0, column).getStatus() == -1;</span>
+    }
+
+    /**
+     * Check if there is a winner or not
+     *
+     * @return id of the winner, or null if there is no winner
+     */
+    public Player Win() {
+
+        //Look for win combinations on lines
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        for (int i = 0; i &lt; this._board.getHeight(); ++i) {</span>
+
+<span class="fc bfc" id="L122" title="All 2 branches covered.">            for (int j = 0; j &lt;= (this._board.getWidth() - 4); ++j) {</span>
+
+<span class="fc bfc" id="L124" title="All 8 branches covered.">                if (this._player1.getId() == this._board.getTileIJ(i, j).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(i, j + 1).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(i, j + 2).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(i, j + 3).getStatus()) {</span>
+<span class="fc" id="L125">                    return _player1;</span>
+                }
+
+<span class="pc bpc" id="L128" title="5 of 8 branches missed.">                if (this._player2.getId() == this._board.getTileIJ(i, j).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(i, j + 1).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(i, j + 2).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(i, j + 3).getStatus()) {</span>
+<span class="nc" id="L129">                    return _player2;</span>
+                }
+
+            }
+
+        }
+
+        //Look for win combinations on columns
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        for (int i = 0; i &lt; this._board.getWidth(); ++i) {</span>
+
+<span class="fc bfc" id="L139" title="All 2 branches covered.">            for (int j = 0; j &lt;= (this._board.getHeight() - 4); ++j) {</span>
+
+<span class="pc bpc" id="L141" title="7 of 8 branches missed.">                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 1, i).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 2, i).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 3, i).getStatus()) {</span>
+<span class="nc" id="L142">                    return _player1;</span>
+                }
+
+<span class="pc bpc" id="L145" title="7 of 8 branches missed.">                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 1, i).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 2, i).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 3, i).getStatus()) {</span>
+<span class="nc" id="L146">                    return _player2;</span>
+                }
+
+            }
+
+        }
+
+        //Look for win combinations on right diags
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        for (int i = 0; i &lt;= (this._board.getWidth() - 4); ++i) {</span>
+
+<span class="fc bfc" id="L156" title="All 2 branches covered.">            for (int j = 0; j &lt;= (this._board.getHeight() - 4); ++j) {</span>
+
+<span class="pc bpc" id="L158" title="7 of 8 branches missed.">                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 1, i + 1).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 2, i + 2).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 3, i + 3).getStatus()) {</span>
+<span class="nc" id="L159">                    return _player1;</span>
+                }
+
+<span class="pc bpc" id="L162" title="7 of 8 branches missed.">                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 1, i + 1).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 2, i + 2).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 3, i + 3).getStatus()) {</span>
+<span class="nc" id="L163">                    return _player2;</span>
+                }
+
+            }
+
+        }
+
+        //Vérification des diagonales gauches
+<span class="fc bfc" id="L171" title="All 2 branches covered.">        for (int i = 3; i &lt; this._board.getWidth(); ++i) {</span>
+
+<span class="fc bfc" id="L173" title="All 2 branches covered.">            for (int j = 0; j &lt;= (this._board.getHeight() - 4); ++j) {</span>
+
+<span class="pc bpc" id="L175" title="7 of 8 branches missed.">                if (this._player1.getId() == this._board.getTileIJ(j, i).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 1, i - 1).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 2, i - 2).getStatus() &amp;&amp; this._player1.getId() == this._board.getTileIJ(j + 3, i - 3).getStatus()) {</span>
+<span class="nc" id="L176">                    return _player1;</span>
+                }
+
+<span class="pc bpc" id="L179" title="7 of 8 branches missed.">                if (this._player2.getId() == this._board.getTileIJ(j, i).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 1, i - 1).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 2, i - 2).getStatus() &amp;&amp; this._player2.getId() == this._board.getTileIJ(j + 3, i - 3).getStatus()) {</span>
+<span class="nc" id="L180">                    return _player2;</span>
+                }
+
+            }
+
+        }
+
+<span class="fc" id="L187">        return null;</span>
+
+    }
+
+    /**
+     * Check if the game is over
+     */
+    public void isOver() {
+
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">        for (int i = 0; i &lt; this._board.getHeight(); ++i) {</span>
+
+<span class="pc bpc" id="L198" title="1 of 2 branches missed.">            for (int j = 0; j &lt; this._board.getWidth(); j++) {</span>
+
+<span class="pc bpc" id="L200" title="1 of 2 branches missed.">                if (this._board.getTileIJ(i, j).getStatus() == -1) {</span>
+<span class="fc" id="L201">                    return;</span>
+                }
+
+            }
+
+        }
+
+<span class="nc" id="L208">        this._over = true;</span>
+
+<span class="nc" id="L210">    }</span>
+
+    /**
+     * Reset the game
+     */
+    public void resetGame() {
+
+<span class="nc" id="L217">        this._board.resetBoard();</span>
+<span class="nc" id="L218">        this._winner = -1;</span>
+<span class="nc" id="L219">        this._currentPlayer = this._player1;</span>
+
+<span class="nc" id="L221">        setChanged();</span>
+<span class="nc" id="L222">        notifyObservers();</span>
+
+<span class="nc" id="L224">    }</span>
+
+    /**
+     * Reset the previw
+     */
+    public void resetPosPreview() {
+<span class="fc" id="L230">        setPosPreview(-1);</span>
+<span class="fc" id="L231">    }</span>
+
+    /**
+     * Set effects on the tiles (randomly)
+     */
+    public void setTilesEffect() {
+
+<span class="nc bnc" id="L238" title="All 2 branches missed.">        for (int i = 0; i &lt; this._board.getHeight(); ++i) {</span>
+
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            for (int j = 0; j &lt; this._board.getWidth(); ++j) {</span>
+
+<span class="nc" id="L242">                Random rand = new Random();</span>
+                //Tire un nombre aléatoire entre min et max compris
+<span class="nc" id="L244">                int random = rand.nextInt(100 - 1 + 1) + 1;</span>
+
+<span class="nc bnc" id="L246" title="All 2 branches missed.">                if (random &lt;= this._board.getTileEffectChance()) {</span>
+<span class="nc" id="L247">                    this._board.getTileIJ(i, j).setEffect(createEffect());</span>
+                }
+
+            }
+
+        }
+
+<span class="nc" id="L254">    }</span>
+
+    /**
+     * Set the preview
+     *
+     * @param i
+     */
+    public void setPosPreview(int i) {
+
+<span class="fc" id="L263">        this._posPreview = i;</span>
+<span class="fc" id="L264">        setChanged();</span>
+<span class="fc" id="L265">        notifyObservers();</span>
+
+<span class="fc" id="L267">    }</span>
+
+    /**
+     * Set the board for the game
+     *
+     * @param board
+     */
+    public void setBoard(Board board) {
+<span class="fc" id="L275">        this._board = board;</span>
+<span class="fc" id="L276">    }</span>
+
+    /**
+     * Get the preview
+     *
+     * @return the pos preview
+     */
+    public int getPosPreview() {
+<span class="nc" id="L284">        return _posPreview;</span>
+    }
+
+    /**
+     * Get the board of the game
+     *
+     * @return board
+     */
+    public Board getBoard() {
+<span class="fc" id="L293">        return this._board;</span>
+    }
+
+    /**
+     * Get the current player id
+     *
+     * @return id of the player
+     */
+    public Player getCurrentPlayer() {
+<span class="fc" id="L302">        return this._currentPlayer;</span>
+    }
+
+    /**
+     * Get a player from its id
+     *
+     * @param id
+     * @return a player
+     */
+    public Player getPlayerById(int id) {
+
+<span class="nc bnc" id="L313" title="All 2 branches missed.">        if (id == this._player1.getId()) {</span>
+<span class="nc" id="L314">            return this._player1;</span>
+<span class="nc bnc" id="L315" title="All 2 branches missed.">        } else if (id == this._player2.getId()) {</span>
+<span class="nc" id="L316">            return this._player2;</span>
+        } else {
+<span class="nc" id="L318">            return null;</span>
+        }
+
+    }
+
+    /**
+     * Get the winner of the game
+     *
+     * @return id of the winner
+     */
+    public int getWinner() {
+<span class="nc" id="L329">        return this._winner;</span>
+    }
+
+    /**
+     * Is the game over ?
+     *
+     * @return true if the game is over
+     */
+    public boolean getOver() {
+<span class="nc" id="L338">        return this._over;</span>
+    }
+
+    /**
+     * Get player 1
+     *
+     * @return player 1
+     */
+    public Player getPlayer1() {
+<span class="fc" id="L347">        return this._player1;</span>
+    }
+
+    /**
+     * Get player 2
+     *
+     * @return player 2
+     */
+    public Player getPlayer2() {
+<span class="fc" id="L356">        return this._player2;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -31,6 +31,7 @@ public class ChangeColorEffect extends Effect {
             tile_id = player1_id;
         }
         game.getBoard().getTileIJ(line, column).setStatus(tile_id);
+        
     }
 
 }
