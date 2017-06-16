@@ -209,7 +209,7 @@ public final class GameView extends JFrame implements Observer {
                         panelTmp.getComponent(j).setBackground(Color.WHITE);
 
                     }
-                    if (game.getBoard().getTileIJ(j, i).getEffect() != null) {
+                    if (game.getBoard().getTileIJ(j, i).getEffect() != null && game.isDebug()) {
 
                         JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);
                         JLabel tmps = (JLabel) panelTmp.getComponent(j);

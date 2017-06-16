@@ -14,6 +14,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JPanel;
 import model.Board;
+import model.Effect;
 import model.Game;
 import model.HumanPlayer;
 import view.GameView;
@@ -52,22 +53,28 @@ public final class GameController {
      *
      * @param view
      * @param game
+     * @param height the board's height
+     * @param width the board's width
+     * @param usableEffects the effects players want to use
      */
-    public GameController(GameView view, Game game) {
+    public GameController(GameView view, Game game, int height, int width, Effect[] usableEffects) {
 
         //Initilalisation of the view
         this._view = view;
         this._game = game;
 
-        initSettingsController();
+        initSettingsController(height, width, usableEffects);
         initEndGameController();
 
     }
 
     /**
      * Settings initialisation
+     * @param height the board's height
+     * @param width the board's width
+     * @param usableEffects the effects players want to use
      */
-    public void initSettingsController() {
+    public void initSettingsController(int height, int width, Effect[] usableEffects) {
 
         this._settingsClosingWindow = new WindowAdapter() {
 
@@ -83,7 +90,7 @@ public final class GameController {
         };
 
         this._settingsPlay = (ActionEvent e) -> {
-            startGame();
+            startGame(height, width, usableEffects);
         };
 
         this._view.getSettingsFrame().addWindowListener(_settingsClosingWindow);
@@ -266,20 +273,20 @@ public final class GameController {
         this._view.resetView();
 
     }
-
+    
     /**
-     * Start a new game method
+     * Start a new game method, with the specified gird size
+     * @param width the board's width
+     * @param height the board's height
+     * @param usableEffects the effects players want to use
      */
-    private void startGame() {
-
-        int width = 10;
-        int height = 10;
+    private void startGame(int width, int height, Effect[] usableEffects) {
 
         Board board = new Board(width, height);
         this._game.setBoard(board);
         this._game.getBoard().setEffectChances(this._view.getSettingsTileSlider().getValue());
 
-        this._game.setTilesEffect();
+        this._game.setTilesEffect(usableEffects);
 
         this._view.setWidth(width);
         this._view.setHeight(height);

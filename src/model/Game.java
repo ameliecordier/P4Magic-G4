@@ -23,6 +23,7 @@ public final class Game extends Observable {
     private Player _currentPlayer;
     private int _winner;
     private boolean _over;
+    private boolean _debug;
 
     /**
      * Game constructor A game has two players... for now.
@@ -38,6 +39,26 @@ public final class Game extends Observable {
 
         init();
 
+    }
+    
+    /**
+     * Game constructor with player color selection and debug on/off
+     * @param colorP1 the player 1 color
+     * @param colorP2 the player 2 color
+     */
+    public Game(Color colorP1, Color colorP2, boolean debug){
+        
+        this._winner = -1;
+        this._over = false;
+
+        this._player1 = new HumanPlayer(1, colorP1);
+        this._player2 = new HumanPlayer(2, colorP2);
+        this._currentPlayer = this._player1;
+        
+        this._debug = debug;
+
+        init();
+        
     }
 
     /**
@@ -232,8 +253,9 @@ public final class Game extends Observable {
 
     /**
      * Set effects on the tiles (randomly)
+     * @param usableEffects the effects players want to use
      */
-    public void setTilesEffect() {
+    public void setTilesEffect(Effect[] usableEffects) {
 
         for (int i = 0; i < this._board.getHeight(); ++i) {
 
@@ -244,7 +266,7 @@ public final class Game extends Observable {
                 int random = rand.nextInt(100 - 1 + 1) + 1;
 
                 if (random <= this._board.getTileEffectChance()) {
-                    this._board.getTileIJ(i, j).setEffect(createEffect());
+                    this._board.getTileIJ(i, j).setEffect(createEffect(usableEffects));
                 }
 
             }
@@ -354,6 +376,15 @@ public final class Game extends Observable {
      */
     public Player getPlayer2() {
         return this._player2;
+    }
+    
+    /**
+     * Checks if the debug mode is on
+     * 
+     * @return true is debug is on
+     */
+    public boolean isDebug(){
+        return _debug;
     }
 
 }
