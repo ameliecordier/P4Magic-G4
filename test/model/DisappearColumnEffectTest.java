@@ -45,7 +45,9 @@ public class DisappearColumnEffectTest {
     }
 
     /**
-     * Test of playEffect method, of class DisappearColumnEffect.
+     * Test du bon fonctionnement du jeu, en dehors de l'effet Résultats
+     * attendus après le coup : - un pion de plus sur le plateau - le tour de
+     * jeu est passé - l'effet a bien été appliqué
      */
     @Test
     public void testDisappearColumnEffectNormalGame() {
@@ -80,7 +82,11 @@ public class DisappearColumnEffectTest {
     }
 
     /**
-     * Test 
+     * Test de DisappearColumnEffect sur grille vide 
+     * Vérification de l'état de la
+     * tuile après application de l'effet 
+     * Résultats attendus : la case doit être
+     * vide, le tour de jeu doit être passé
      */
     @Test
     public void testDisappearColumnEffectEmptyGame() {
@@ -106,7 +112,10 @@ public class DisappearColumnEffectTest {
     }
     
     /**
-     * Test 
+     * Test de DisappearColumnEffect sur grille vide 
+     * Vérification du nombre de jetons
+     * après jeu 
+     * Résultat attendu : le nombre doit être égal à 0
      */
     @Test
     public void testDisappearColumnEffectEmptyGameWithTilesNumber() {
@@ -123,7 +132,12 @@ public class DisappearColumnEffectTest {
     }
 
     /**
-     * Test 
+     * Test de DisappearColumnEffect sur grille pré-remplie 
+     * Vérification de l'état de
+     * la tuile après application de l'effet 
+     * Résultat attendu : les cases en-dessous
+     * doivent être vides, l'effet doit être sur la case 
+     * et le tour doit être passé
      */
     @Test
     public void testDisappearColumnEffectFilledGame() {
@@ -142,10 +156,12 @@ public class DisappearColumnEffectTest {
         aGame.playMove(0);
 
         // Vérifications :
-        // - la case est bien vide après
+        // - les cases en-dessous sont bien vides après
         // - l'effet est bien appliqué sur la case 
         // - le tour de jeu a bien changé
         assertEquals(-1, aGame.getBoard().getTileIJ(height - 3, 0).getStatus());
+        assertEquals(-1, aGame.getBoard().getTileIJ(height - 2, 0).getStatus());
+        assertEquals(-1, aGame.getBoard().getTileIJ(height - 1, 0).getStatus());
         assertTrue("Doit être d'effet disappearColumn", aGame.getBoard().getTileIJ(height - 3, 0).getEffect() instanceof DisappearColumnEffect);
         assertTrue(aGame.getCurrentPlayer().getId() != id_player);
 

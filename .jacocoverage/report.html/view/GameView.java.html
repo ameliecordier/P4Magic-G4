@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GameView.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;P4Magic&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">view</a> &gt; <span class="el_source">GameView.java</span></div><h1>GameView.java</h1><pre class="source lang-java linenums">/**
+ * MagicP4
+ * IUT Lyon 1 - 2016
+ */
+package view;
+
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.*;
+import javax.swing.border.Border;
+import model.Game;
+import model.Player;
+
+/**
+ * GameView class
+ *
+ * @author hakkahi IUT Lyon 1 - 2016
+ */
+public final class GameView extends JFrame implements Observer {
+
+    //Settings Frame
+    private JFrame _settingsFrame;
+    private JPanel _settingsComponentGrid;
+    private JButton _settingsQuit;
+    private JButton _settingsPlay;
+    private JSeparator _settingsSeparator;
+    private JSlider _settingsSliderEffectChance;
+    private JLabel _settingsSliderLabel;
+    private JPanel _settingsSliderPanel;
+
+    //Game Frame (Main Frame)
+    private JPanel _gameWindow;
+    public static JPanel _gamePreview;
+    public static JPanel _gameRowsGrid;
+<span class="nc" id="L40">    private int _gameWindowHeight = 800;</span>
+<span class="nc" id="L41">    private int _gameWindowWidth = 600;</span>
+<span class="nc" id="L42">    private int _gameBorderSize = (_gameWindowWidth * 1) / 100;</span>
+    private static Border _gameBlueLine;
+
+    //End Game Frame
+    private JFrame _endGameFrame;
+    private JLabel _endGameLabel1;
+    private JLabel _endGameLabel2;
+    private JButton _endGameQuit;
+    private JButton _endGamePlay;
+    private JPanel _endGamePanel;
+    private JPanel _endGameButtons;
+
+    private static int _width;
+    private static int _height;
+
+    /**
+     * GameView constructor
+     *
+     */
+    public GameView() {
+
+<span class="nc" id="L63">        super(&quot;Puissance4 - Game&quot;);</span>
+
+<span class="nc" id="L65">        initSettingsFrame();</span>
+<span class="nc" id="L66">        this.setVisible(false);</span>
+<span class="nc" id="L67">        initGameFrame();</span>
+<span class="nc" id="L68">        initEndGameFrame();</span>
+<span class="nc" id="L69">    }</span>
+
+    /**
+     * initSettingsFrame Settings panel
+     */
+    private void initSettingsFrame() {
+
+<span class="nc" id="L76">        this._settingsFrame = new JFrame(&quot;Puissance4 - Settings&quot;);</span>
+<span class="nc" id="L77">        this._settingsFrame.setSize(600, 500);</span>
+<span class="nc" id="L78">        this._settingsFrame.setResizable(false);</span>
+<span class="nc" id="L79">        this._settingsFrame.setLocationRelativeTo(null);</span>
+<span class="nc" id="L80">        this._settingsComponentGrid = new JPanel(new GridLayout(3, 1));</span>
+<span class="nc" id="L81">        this._settingsPlay = new JButton(&quot;Play&quot;);</span>
+<span class="nc" id="L82">        this._settingsQuit = new JButton(&quot;Quit&quot;);</span>
+<span class="nc" id="L83">        this._settingsSeparator = new JSeparator();</span>
+<span class="nc" id="L84">        this._settingsSliderPanel = new JPanel(new GridLayout(4, 1));</span>
+<span class="nc" id="L85">        this._settingsSliderEffectChance = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);</span>
+<span class="nc" id="L86">        this._settingsSliderEffectChance.setMajorTickSpacing(10);</span>
+<span class="nc" id="L87">        this._settingsSliderEffectChance.setMinorTickSpacing(1);</span>
+<span class="nc" id="L88">        this._settingsSliderEffectChance.setPaintTicks(true);</span>
+<span class="nc" id="L89">        this._settingsSliderEffectChance.setPaintLabels(true);</span>
+<span class="nc" id="L90">        this._settingsSliderLabel = new JLabel(&quot;Pourcentage de chance d'effet sur une case&quot;, JLabel.CENTER);</span>
+<span class="nc" id="L91">        this._settingsSliderLabel.setVerticalAlignment(JLabel.BOTTOM);</span>
+
+<span class="nc" id="L93">        this._settingsFrame.add(this._settingsComponentGrid);</span>
+<span class="nc" id="L94">        this._settingsComponentGrid.add(this._settingsSliderPanel);</span>
+<span class="nc" id="L95">        this._settingsSliderPanel.add(this._settingsSliderLabel);</span>
+<span class="nc" id="L96">        this._settingsSliderPanel.add(this._settingsSliderEffectChance);</span>
+<span class="nc" id="L97">        this._settingsSliderPanel.add(new JLabel(&quot;&quot;));</span>
+<span class="nc" id="L98">        this._settingsSliderPanel.add(this._settingsSeparator);</span>
+<span class="nc" id="L99">        this._settingsComponentGrid.add(this._settingsPlay);</span>
+<span class="nc" id="L100">        this._settingsComponentGrid.add(this._settingsQuit);</span>
+
+<span class="nc" id="L102">        this._settingsFrame.setVisible(true);</span>
+
+<span class="nc" id="L104">    }</span>
+
+    /**
+     * Game frame
+     */
+    public void initGameFrame() {
+
+<span class="nc" id="L111">        this.setSize(_gameWindowHeight, _gameWindowWidth);</span>
+<span class="nc" id="L112">        this.setLocationRelativeTo(null);</span>
+
+<span class="nc" id="L114">        this._gameWindow = new JPanel(new GridBagLayout());</span>
+<span class="nc" id="L115">        _gameRowsGrid = new JPanel(new GridLayout(1, 0));</span>
+<span class="nc" id="L116">        _gamePreview = new JPanel(new GridLayout(1, 0));</span>
+
+<span class="nc" id="L118">        _gameBlueLine = BorderFactory.createLineBorder(Color.BLUE, _gameBorderSize);</span>
+
+<span class="nc" id="L120">        GridBagConstraints cWindow = new GridBagConstraints();</span>
+
+<span class="nc" id="L122">        _gameRowsGrid.setBackground(Color.WHITE);</span>
+
+<span class="nc" id="L124">        _gamePreview.setBackground(Color.WHITE);</span>
+
+<span class="nc" id="L126">        this.add(getGameWindow());</span>
+
+<span class="nc" id="L128">        cWindow.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L129">        cWindow.weightx = 1;</span>
+<span class="nc" id="L130">        cWindow.gridx = 0;</span>
+<span class="nc" id="L131">        cWindow.gridy = 0;</span>
+<span class="nc" id="L132">        cWindow.weighty = 0.14;</span>
+<span class="nc" id="L133">        getGameWindow().add(getGamePreview(), cWindow);</span>
+
+<span class="nc" id="L135">        cWindow.weightx = 1;</span>
+<span class="nc" id="L136">        cWindow.gridx = 0;</span>
+<span class="nc" id="L137">        cWindow.gridy = 1;</span>
+<span class="nc" id="L138">        cWindow.weighty = 0.86;</span>
+<span class="nc" id="L139">        getGameWindow().add(getGameRowsGrid(), cWindow);</span>
+
+<span class="nc" id="L141">        this.setVisible(false);</span>
+
+<span class="nc" id="L143">    }</span>
+
+    /**
+     * End game frame
+     */
+    private void initEndGameFrame() {
+
+<span class="nc" id="L150">        this._endGameFrame = new JFrame(&quot;Puissance4 - EndGame&quot;);</span>
+<span class="nc" id="L151">        this._endGameFrame.setSize(500, 200);</span>
+<span class="nc" id="L152">        this._settingsFrame.setResizable(false);</span>
+<span class="nc" id="L153">        this._endGameFrame.setLocationRelativeTo(null);</span>
+<span class="nc" id="L154">        this._endGamePlay = new JButton(&quot;New Game&quot;);</span>
+<span class="nc" id="L155">        this._endGameQuit = new JButton(&quot;Quit&quot;);</span>
+<span class="nc" id="L156">        this._endGameLabel1 = new JLabel();</span>
+<span class="nc" id="L157">        this._endGameLabel2 = new JLabel(&quot;Play Again ?&quot;);</span>
+<span class="nc" id="L158">        this._endGameLabel2.setVerticalAlignment(JLabel.TOP);</span>
+<span class="nc" id="L159">        this._endGameLabel2.setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L160">        this._endGameButtons = new JPanel(new GridLayout(1, 2));</span>
+<span class="nc" id="L161">        this._endGamePanel = new JPanel(new GridLayout(3, 1));</span>
+
+<span class="nc" id="L163">        this._endGameFrame.add(this._endGamePanel);</span>
+<span class="nc" id="L164">        this._endGamePanel.add(this._endGameLabel1);</span>
+<span class="nc" id="L165">        this._endGamePanel.add(this._endGameLabel2);</span>
+<span class="nc" id="L166">        this._endGamePanel.add(this._endGameButtons);</span>
+<span class="nc" id="L167">        this._endGameButtons.add(this._endGamePlay);</span>
+<span class="nc" id="L168">        this._endGameButtons.add(this._endGameQuit);</span>
+
+<span class="nc" id="L170">        this._endGameFrame.setVisible(false);</span>
+
+<span class="nc" id="L172">    }</span>
+
+    /**
+     * Update method
+     *
+     * @param o
+     * @param arg
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        if (o instanceof Game) {</span>
+
+<span class="nc" id="L185">            Game game = (Game) o;</span>
+
+<span class="nc" id="L187">            resetPreview();</span>
+
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (game.getPosPreview() != -1) {</span>
+
+<span class="nc" id="L191">                this.getGamePreview().getComponent(game.getPosPreview()).setBackground(game.getCurrentPlayer().getColor());</span>
+
+            }
+
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            for (int i = 0; i &lt; _width; ++i) {</span>
+
+<span class="nc bnc" id="L197" title="All 2 branches missed.">                for (int j = 0; j &lt; _height; ++j) {</span>
+
+<span class="nc" id="L199">                    Player tmp = game.getPlayerById(game.getBoard().getTileIJ(j, i).getStatus());</span>
+
+<span class="nc bnc" id="L201" title="All 2 branches missed.">                    if (tmp != null) {</span>
+
+<span class="nc" id="L203">                        JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);</span>
+<span class="nc" id="L204">                        panelTmp.getComponent(j).setBackground(tmp.getColor());</span>
+
+<span class="nc" id="L206">                    } else {</span>
+
+<span class="nc" id="L208">                        JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);</span>
+<span class="nc" id="L209">                        panelTmp.getComponent(j).setBackground(Color.WHITE);</span>
+
+                    }
+<span class="nc bnc" id="L212" title="All 2 branches missed.">                    if (game.getBoard().getTileIJ(j, i).getEffect() != null) {</span>
+
+<span class="nc" id="L214">                        JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);</span>
+<span class="nc" id="L215">                        JLabel tmps = (JLabel) panelTmp.getComponent(j);</span>
+<span class="nc" id="L216">                        tmps.setBorder(BorderFactory.createLineBorder(Color.GREEN, _gameBorderSize));</span>
+
+<span class="nc" id="L218">                    } else {</span>
+
+<span class="nc" id="L220">                        JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);</span>
+<span class="nc" id="L221">                        JLabel tmps = (JLabel) panelTmp.getComponent(j);</span>
+<span class="nc" id="L222">                        tmps.setBorder(_gameBlueLine);</span>
+
+                    }
+
+                }
+
+            }
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            if (game.getWinner() != -1) {</span>
+
+<span class="nc" id="L231">                this._endGameLabel1.setText(&quot;Player 2 Wins !&quot;);</span>
+
+<span class="nc bnc" id="L233" title="All 2 branches missed.">                if (game.getWinner() == game.getPlayer1().getId()) {</span>
+<span class="nc" id="L234">                    this._endGameLabel1.setText(&quot;Player 1 Wins !&quot;);</span>
+                }
+
+<span class="nc" id="L237">                this._endGameLabel1.setVerticalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L238">                this._endGameLabel1.setHorizontalAlignment(JLabel.CENTER);</span>
+
+<span class="nc" id="L240">                this._endGameFrame.setVisible(true);</span>
+
+            }
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (game.getOver()) {</span>
+<span class="nc" id="L244">                this._endGameLabel1.setText(&quot;Draw !&quot;);</span>
+<span class="nc" id="L245">                this._endGameLabel1.setVerticalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L246">                this._endGameLabel1.setHorizontalAlignment(JLabel.CENTER);</span>
+
+<span class="nc" id="L248">                this._endGameFrame.setVisible(true);</span>
+            }
+
+        }
+<span class="nc" id="L252">    }</span>
+
+    /**
+     * Reset method
+     */
+    public void resetPreview() {
+
+<span class="nc bnc" id="L259" title="All 2 branches missed.">        for (int i = 0; i &lt; _width; ++i) {</span>
+
+<span class="nc" id="L261">            this.getGamePreview().getComponent(i).setBackground(Color.WHITE);</span>
+
+        }
+
+<span class="nc" id="L265">    }</span>
+
+    /**
+     * Fill grid method
+     */
+    public static void fillGrids() {
+
+<span class="nc bnc" id="L272" title="All 2 branches missed.">        for (int i = 0; i &lt; _width; i++) {</span>
+
+<span class="nc" id="L274">            JPanel gameColsGrid = new JPanel(new GridLayout(0, 1));</span>
+
+<span class="nc bnc" id="L276" title="All 2 branches missed.">            for (int j = 0; j &lt; _height; ++j) {</span>
+
+<span class="nc" id="L278">                JLabel labelGrid = new JLabel();</span>
+<span class="nc" id="L279">                labelGrid.setBorder(_gameBlueLine);</span>
+<span class="nc" id="L280">                labelGrid.setOpaque(true);</span>
+<span class="nc" id="L281">                labelGrid.setBackground(Color.WHITE);</span>
+<span class="nc" id="L282">                labelGrid.setVerticalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L283">                labelGrid.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L284">                gameColsGrid.add(labelGrid);</span>
+
+            }
+
+<span class="nc" id="L288">            _gameRowsGrid.add(gameColsGrid);</span>
+        }
+
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        for (int i = 0; i &lt; _width; i++) {</span>
+
+<span class="nc" id="L293">            JLabel labelPreview = new JLabel();</span>
+<span class="nc" id="L294">            labelPreview.setOpaque(true);</span>
+<span class="nc" id="L295">            labelPreview.setBackground(Color.WHITE);</span>
+<span class="nc" id="L296">            labelPreview.setVerticalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L297">            labelPreview.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L298">            _gamePreview.add(labelPreview);</span>
+        }
+
+<span class="nc" id="L301">    }</span>
+
+    /**
+     * Reset View method
+     */
+    public void resetView() {
+<span class="nc" id="L307">        _gameRowsGrid.removeAll();</span>
+<span class="nc" id="L308">        _gamePreview.removeAll();</span>
+<span class="nc" id="L309">    }</span>
+
+    /**
+     * Set border size
+     */
+    public void setBorderSize() {
+
+<span class="nc" id="L316">        Rectangle rectangle = this.getBounds();</span>
+
+<span class="nc" id="L318">        this.setGameWindowHeight(rectangle.height);</span>
+<span class="nc" id="L319">        this.setGameWindowWidth(rectangle.width);</span>
+
+<span class="nc" id="L321">        _gameBorderSize = (_gameWindowWidth * 1) / 100;</span>
+
+<span class="nc" id="L323">        _gameBlueLine = BorderFactory.createLineBorder(Color.BLUE, _gameBorderSize);</span>
+
+<span class="nc" id="L325">        this.setLabelBorder();</span>
+
+<span class="nc" id="L327">    }</span>
+
+    /**
+     * Set window height
+     *
+     * @param height
+     */
+    public void setGameWindowHeight(int height) {
+<span class="nc" id="L335">        this._gameWindowHeight = height;</span>
+<span class="nc" id="L336">    }</span>
+
+    /**
+     * Set window width
+     *
+     * @param width
+     */
+    public void setGameWindowWidth(int width) {
+<span class="nc" id="L344">        this._gameWindowWidth = width;</span>
+<span class="nc" id="L345">    }</span>
+
+    /**
+     * Set label border
+     */
+    public void setLabelBorder() {
+
+<span class="nc bnc" id="L352" title="All 2 branches missed.">        for (int i = 0; i &lt; _width; i++) {</span>
+
+<span class="nc" id="L354">            JPanel gameColsGrid = new JPanel(new GridLayout(0, 1));</span>
+
+<span class="nc bnc" id="L356" title="All 2 branches missed.">            for (int j = 0; j &lt; _height; ++j) {</span>
+<span class="nc" id="L357">                JPanel panelTmp = (JPanel) _gameRowsGrid.getComponent(i);</span>
+<span class="nc" id="L358">                JLabel tmps = (JLabel) panelTmp.getComponent(j);</span>
+<span class="nc" id="L359">                tmps.setBorder(_gameBlueLine);</span>
+
+            }
+
+        }
+
+<span class="nc" id="L365">    }</span>
+
+    public void setWidth(int width) {
+<span class="nc" id="L368">        _width = width;</span>
+<span class="nc" id="L369">    }</span>
+
+    public void setHeight(int height) {
+<span class="nc" id="L372">        _height = height;</span>
+<span class="nc" id="L373">    }</span>
+
+    public JFrame getEndGameFrame() {
+<span class="nc" id="L376">        return this._endGameFrame;</span>
+    }
+
+    public JButton getEndGameQuit() {
+<span class="nc" id="L380">        return this._endGameQuit;</span>
+    }
+
+    public JButton getEndGamePlay() {
+<span class="nc" id="L384">        return this._endGamePlay;</span>
+    }
+
+    public JFrame getSettingsFrame() {
+<span class="nc" id="L388">        return this._settingsFrame;</span>
+    }
+
+    public JButton getSettingsQuitButton() {
+<span class="nc" id="L392">        return this._settingsQuit;</span>
+    }
+
+    public JButton getSettingsPlayButton() {
+<span class="nc" id="L396">        return this._settingsPlay;</span>
+    }
+
+    public JSlider getSettingsTileSlider() {
+<span class="nc" id="L400">        return this._settingsSliderEffectChance;</span>
+    }
+
+    public JPanel getGameWindow() {
+<span class="nc" id="L404">        return _gameWindow;</span>
+    }
+
+    public JPanel getGamePreview() {
+<span class="nc" id="L408">        return _gamePreview;</span>
+    }
+
+    public JPanel getGameRowsGrid() {
+<span class="nc" id="L412">        return _gameRowsGrid;</span>
+    }
+
+    public JFrame getMainFrame() {
+<span class="nc" id="L416">        return this;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
